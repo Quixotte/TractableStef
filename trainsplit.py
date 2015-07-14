@@ -53,7 +53,7 @@ def learn_and_test(solver_file):
 def main():
     base = '/data/ad6813/Nus-wide/'
 
-    stef_dir = 'StefTractable/'
+    stef_dir = 'TractableStef/'
 
     file_labels = os.path.join(base, 'labels.txt')
 
@@ -137,7 +137,7 @@ def main():
         f.write(hd5_test_filename + '\n')
 
     # %timeit learn_and_test('hdf5_classification/solver.prototxt')
-    acc = learn_and_test('examples/hdf5_classification/solver.prototxt')
+    acc = learn_and_test('../examples/hdf5_classification/solver.prototxt')
     print("Accuracy: {:.3f}".format(acc))
 
 
