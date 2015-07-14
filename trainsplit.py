@@ -3,7 +3,6 @@ from sklearn import cross_validation
 from numpy import genfromtxt, savetxt
 from sklearn.cross_validation import train_test_split
 
-
 import caffe
 
 import os
@@ -51,17 +50,15 @@ def learn_and_test(solver_file):
     accuracy /= test_iters
     return accuracy
 
-
-
-
 def main():
-
-    
     base = '/data/ad6813/Nus-wide/'
+
+    stef_dir = 'StefTractable/'
 
     file_labels = os.path.join(base, 'labels.txt')
 
-    dirname = os.path.join(base, 'hd5')
+    dirname = os.path.join(base + stef_dir, 'hd5')
+
     if not os.path.exists(os.path.abspath(dirname)):
         os.makedirs(dirname)
 
@@ -77,6 +74,12 @@ def main():
     data_all   = [x[0] for x in dataset]
     labels_all = [x[1:] for x in dataset]
     labels_all = [map(lambda label: label2num[label], x) for x in labels_all]
+
+    fewer_data = True
+
+    if fewer_data:
+        data_all = data_all[:10000]
+        labels_all = labels_all[:10000]
 
 
     # labels_binary = [0] * len(labels_all)
@@ -132,10 +135,6 @@ def main():
         f.create_dataset('label', data=labels_test.astype(numpy.float32), **comp_kwargs)
     with open(hd5_meta_test, 'w') as f:
         f.write(hd5_test_filename + '\n')
-
-
-
-
 
     # %timeit learn_and_test('hdf5_classification/solver.prototxt')
     acc = learn_and_test('examples/hdf5_classification/solver.prototxt')
