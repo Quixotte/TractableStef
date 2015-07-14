@@ -51,13 +51,11 @@ def learn_and_test(solver_file):
     return accuracy
 
 def main():
-    base = '/data/ad6813/Nus-wide/'
-
-    stef_dir = 'TractableStef/'
+    base = '/data/ad6813/Nus-wide/TractableStef'
 
     file_labels = os.path.join(base, 'labels.txt')
 
-    dirname = os.path.join(base + stef_dir, 'hd5')
+    dirname = os.path.join(base, 'hd5')
 
     if not os.path.exists(os.path.abspath(dirname)):
         os.makedirs(dirname)
@@ -137,7 +135,7 @@ def main():
         f.write(hd5_test_filename + '\n')
 
     # %timeit learn_and_test('hdf5_classification/solver.prototxt')
-    acc = learn_and_test('../examples/hdf5_classification/solver.prototxt')
+    acc = learn_and_test('examples/hdf5_classification/solver.prototxt')
     print("Accuracy: {:.3f}".format(acc))
 
 
