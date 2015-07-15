@@ -5,7 +5,7 @@ layers {
   top: "data"
   top: "label"
   hdf5_data_param {
-    source: "alex_clibbon_hd5/train_location.txt"
+    source: "../alex_clibbon_hd5/train_location.txt"
     batch_size: 10
   }
   include: { phase: TRAIN }
@@ -16,7 +16,7 @@ layers {
   top: "data"
   top: "label"
   hdf5_data_param {
-    source: "alex_clibbon_hd5/test_location.txt"
+    source: "../alex_clibbon_hd5/test_location.txt"
     batch_size: 10
   }
   include: { phase: TEST }
