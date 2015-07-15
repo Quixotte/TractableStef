@@ -113,7 +113,7 @@ def main():
     # To show this off, we'll list the same data file twice.
     # writeHD5(hd5_train_filename, data_train, labels_train)
     with h5py.File(hd5_train_filename, 'w') as f:
-        f['data'] = data_train.astype(numpy.float32)
+        f['data'] = data_train
         f['label'] = labels_train.astype(numpy.float32)
     with open(hd5_meta_train, 'w') as f:
         f.write(hd5_train_filename + '\n')
