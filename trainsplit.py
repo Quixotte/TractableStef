@@ -73,13 +73,6 @@ def main():
     labels_all = [x[1:] for x in dataset]
     labels_all = [map(lambda label: label2num[label], x) for x in labels_all]
 
-    fewer_data = True
-
-    if fewer_data:
-        data_all = data_all[:10000]
-        labels_all = labels_all[:10000]
-
-
     # labels_binary = [0] * len(labels_all)
     # for (i, v_label) in enumerate(labels_all):
     #     label_coded = [0] * 11
@@ -120,7 +113,7 @@ def main():
     # To show this off, we'll list the same data file twice.
     # writeHD5(hd5_train_filename, data_train, labels_train)
     with h5py.File(hd5_train_filename, 'w') as f:
-        f['data'] = data_train
+        f['data'] = data_train.astype(numpy.float32)
         f['label'] = labels_train.astype(numpy.float32)
     with open(hd5_meta_train, 'w') as f:
         f.write(hd5_train_filename + '\n')
@@ -137,9 +130,6 @@ def main():
     # %timeit learn_and_test('hdf5_classification/solver.prototxt')
     acc = learn_and_test('examples/hdf5_classification/solver.prototxt')
     print("Accuracy: {:.3f}".format(acc))
-
-
-
 
 
 
