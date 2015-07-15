@@ -103,6 +103,10 @@ def main():
     labels_train = labels_binary[0:N_train]
     labels_test  = labels_binary[N_train:N]
 
+    print '==='
+    print data_train[0:10]
+
+
     # TODO: doesn't work with vector labels
     # data_train, data_test, labels_train, labels_test = train_test_split(data_all, labels_all, test_size=0.20, random_state=42)
 
