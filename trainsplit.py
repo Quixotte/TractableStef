@@ -53,7 +53,6 @@ def learn_and_test(solver_file):
 def load_one_image(filename, do_print = False):
     img = misc.imread(filename).astype(numpy.float32)
     if do_print:
-        print type(data)
         print type(img)
         print img.shape, img.dtype
     return img
