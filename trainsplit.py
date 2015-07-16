@@ -142,7 +142,7 @@ def main():
                 print d
                 print img.shape
         except IOError:
-            print "Couldn't find file"
+            print "Couldn't find file", d
 
 
     print 'train_images shape:'
