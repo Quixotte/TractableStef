@@ -130,9 +130,7 @@ def main():
     #load images
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
-
-
-    correct_shape = (256, 256, 3)
+    correct_shape = (256, 256, 3)   #apperantly some images are 256x256, not RGB, filtering them out
     n_correct_images = 8295     #found in earlier run, don't want to recalc every time
 
     train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
@@ -148,17 +146,15 @@ def main():
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
-    hd5_train_images_filename = os.path.join(base, "hd5_images_train.h5")
-    print 'Number of train images:'
+    hd5_train_images_filename = os.path.join(base, "hd5_images_train.hdf5")
+    print 'Shape of images:'
     print train_images.shape
-
-    #print train_images
 
     print sys.getsizeof(train_images)
 
-    #with h5py.File(hd5_train_images_filename, 'w') as f:
-     #   f['label'] = labels_train.astype(numpy.float32)
-      #  f['data'] = train_images
+    with h5py.File(hd5_train_images_filename, 'w') as f:
+       f['label'] = labels_train.astype(numpy.float32)
+       f['data'] = train_images
         #f.create_dataset("data", dtype=numpy.float32, data=train_images )
 
     #with open(hd5_meta_train, 'w') as f:
