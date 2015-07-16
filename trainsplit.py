@@ -112,7 +112,7 @@ def main():
     labels_test  = labels_binary[N_train:N]
 
     print '==='
-    print data_train[0:10]
+    print data_train[0:100]
 
 
     # TODO: doesn't work with vector labels
@@ -128,8 +128,9 @@ def main():
     image_dir = os.path.join(base, "/res_imgs/")
 
     #load images
-    train_images = [load_one_image(image_dir + d) for d in data_train if os.path.exists(image_dir + d)]
-
+    train_images = [load_one_image(image_dir + d) for d in data_train]
+    print '====='
+    print shape(train_images)
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train")
