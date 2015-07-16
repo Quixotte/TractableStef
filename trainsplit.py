@@ -125,7 +125,7 @@ def main():
     # To show this off, we'll list the same data file twice.
     # writeHD5(hd5_train_filename, data_train, labels_train)
 
-    image_dir = os.path.join(base, "/res_imgs")
+    image_dir = os.path.join(base, "/res_imgs/")
 
     #load images
     train_images = [load_one_image(image_dir + d) for d in data_train]
