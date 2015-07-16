@@ -11,7 +11,7 @@ import shutil
 import csv
 
 import numpy
-
+from scipy import misc
 
 
 def importCSV( csvfilePath, delimiterChar=",", ignoreFirstRow=False):
@@ -49,6 +49,14 @@ def learn_and_test(solver_file):
         accuracy += solver.test_nets[0].blobs['accuracy'].data
     accuracy /= test_iters
     return accuracy
+
+def load_one_image(filename, do_print = False):
+    img = misc.imread(filename).astype(numpy.float32)
+    if do_print:
+        print type(data)
+        print type(img)
+        print img.shape, img.dtype
+    return img
 
 def main():
     base = '/data/ad6813/Nus-wide/TractableStef'
@@ -116,26 +124,21 @@ def main():
     # HDF5DataLayer source should be a file containing a list of HDF5 filenames.
     # To show this off, we'll list the same data file twice.
     # writeHD5(hd5_train_filename, data_train, labels_train)
-    with h5py.File(hd5_train_filename, 'w') as f:
-        f['data'] = data_train
+
+    image_dir = os.path.join(base, "/res_imgs")
+
+    #load images
+    train_images = [load_one_image(image_dir + d) for d in data_train]
+    test_images = [load_one_image(image_dir + d) for d in data_test]
+
+    hd5_train_images_filename = os.path.join(base, "hd5_images_train")
+
+    with h5py.File(hd5_train_images_filename, 'w') as f:
+        f['data'] = train_images.astype(numpy.float32)
         f['label'] = labels_train.astype(numpy.float32)
     with open(hd5_meta_train, 'w') as f:
-        f.write(hd5_train_filename + '\n')
-        f.write(hd5_train_filename + '\n')
-
-    # HDF5 is pretty efficient, but can be further compressed.
-    comp_kwargs = {'compression': 'gzip', 'compression_opts': 1}
-    with h5py.File(hd5_test_filename, 'w') as f:
-        f.create_dataset('data', data=data_test, **comp_kwargs)
-        f.create_dataset('label', data=labels_test.astype(numpy.float32), **comp_kwargs)
-    with open(hd5_meta_test, 'w') as f:
-        f.write(hd5_test_filename + '\n')
-
-    # %timeit learn_and_test('hdf5_classification/solver.prototxt')
-    acc = learn_and_test('examples/hdf5_classification/solver.prototxt')
-    print("Accuracy: {:.3f}".format(acc))
-
-
+        f.write(hd5_train_images_filename + '\n')
+        f.write(hd5_train_images_filename + '\n')
 
 if __name__ == "__main__":
     main()
