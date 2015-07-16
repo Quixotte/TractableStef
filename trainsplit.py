@@ -152,6 +152,8 @@ def main():
     print 'Number of train images:'
     print len(train_images)
 
+    print train_images
+
     print sys.getsizeof(train_images)
 
     #with h5py.File(hd5_train_images_filename, 'w') as f:
