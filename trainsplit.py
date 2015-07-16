@@ -135,7 +135,7 @@ def main():
     hd5_train_images_filename = os.path.join(base, "hd5_images_train")
 
     with h5py.File(hd5_train_images_filename, 'w') as f:
-        f['data'] = train_images.astype(numpy.float32)
+        f['data'] = train_images
         f['label'] = labels_train.astype(numpy.float32)
     with open(hd5_meta_train, 'w') as f:
         f.write(hd5_train_images_filename + '\n')
