@@ -130,7 +130,7 @@ def main():
     #load images
     train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
-    train_images = numpy.asarray([[[[]]]])
+    train_images = []
 
     correct_shape = (256, 256, 3)
 
@@ -139,7 +139,7 @@ def main():
         img = load_one_image(os.path.join(image_dir, d))
         print img.shape
         if img.shape == correct_shape:
-            numpy.concatenate((train_images, img), axis=0)
+            train_images.append(img)
 
     print 'train_images shape:'
     print train_images.shape
@@ -150,7 +150,8 @@ def main():
 
     with h5py.File(hd5_train_images_filename, 'w') as f:
         f['label'] = labels_train.astype(numpy.float32)
-        f.create_dataset("data", train_images.shape, dtype=numpy.float32, data=train_images )
+        f['data'] = train_images
+        #f.create_dataset("data", dtype=numpy.float32, data=train_images )
 
     with open(hd5_meta_train, 'w') as f:
         f.write(hd5_train_images_filename + '\n')
