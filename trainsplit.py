@@ -53,6 +53,7 @@ def learn_and_test(solver_file):
 def load_one_image(filename, do_print = False):
     img = misc.imread(filename).astype(numpy.float32)
     if do_print:
+        print type(data)
         print type(img)
         print img.shape, img.dtype
     return img
@@ -127,9 +128,19 @@ def main():
     image_dir = os.path.join(base, "res_imgs/")
 
     #load images
-    train_images = [load_one_image(os.path.join(image_dir, d), do_print=True) for d in data_train if os.path.exists(image_dir + d)]
+    train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
+    train_images = numpy.asarray([[[[]]]])
 
+    correct_shape = (256, 256, 3)
+
+    for d in data_train:
+        img = load_one_image(os.path.join(image_dir, d))
+        if img.shape.equals(correct_shape):
+            numpy.concatenate(train_images, img, axis=0)
+
+    print 'train_images shape:'
+    print train_images.shape
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
