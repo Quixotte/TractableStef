@@ -150,9 +150,9 @@ def main():
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train.h5")
     print 'Number of train images:'
-    print len(train_images)
+    print train_images.shape
 
-    print train_images
+    #print train_images
 
     print sys.getsizeof(train_images)
 
