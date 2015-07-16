@@ -128,7 +128,7 @@ def main():
     image_dir = os.path.join(base, "/res_imgs/")
 
     #load images
-    train_images = [load_one_image(image_dir + d) for d in data_train]
+    train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train]
     print '====='
     print shape(train_images)
     #test_images = [load_one_image(image_dir + d) for d in data_test]
