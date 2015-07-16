@@ -135,11 +135,15 @@ def main():
     correct_shape = (256, 256, 3)
 
     for d in data_train:
-        print d
-        img = load_one_image(os.path.join(image_dir, d))
-        print img.shape
-        if img.shape == correct_shape:
-            train_images.append(img)
+        try:
+            img = load_one_image(os.path.join(image_dir, d))
+            if img.shape == correct_shape:
+                train_images.append(img)
+                print d
+                print img.shape
+        except IOError:
+            print "Couldn't find file"
+
 
     print 'train_images shape:'
     print train_images.shape
