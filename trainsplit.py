@@ -136,7 +136,7 @@ def main():
 
     for d in data_train:
         img = load_one_image(os.path.join(image_dir, d))
-        if img.shape.equals(correct_shape):
+        if img.shape == correct_shape:
             numpy.concatenate(train_images, img, axis=0)
 
     print 'train_images shape:'
