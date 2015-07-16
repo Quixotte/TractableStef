@@ -143,8 +143,6 @@ def main():
             if img.shape == correct_shape:
                 train_images[index] = img
                 index+=1
-                print d
-                print img.shape
         except IOError:
             print "Couldn't find file", d
 
