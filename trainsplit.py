@@ -152,9 +152,11 @@ def main():
     print 'Number of train images:'
     print len(train_images)
 
-    with h5py.File(hd5_train_images_filename, 'w') as f:
-        f['label'] = labels_train.astype(numpy.float32)
-        f['data'] = train_images
+    print sys.getsizeof(train_images)
+
+    #with h5py.File(hd5_train_images_filename, 'w') as f:
+     #   f['label'] = labels_train.astype(numpy.float32)
+      #  f['data'] = train_images
         #f.create_dataset("data", dtype=numpy.float32, data=train_images )
 
     #with open(hd5_meta_train, 'w') as f:
