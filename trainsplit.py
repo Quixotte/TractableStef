@@ -154,7 +154,7 @@ def main():
 
     with h5py.File(hd5_train_images_filename, 'w') as f:
        f['label'] = labels_train.astype(numpy.float32)
-       f['data'] = train_images
+       f['data'] = train_images.astype(numpy.float32)
         #f.create_dataset("data", dtype=numpy.float32, data=train_images )
 
     #with open(hd5_meta_train, 'w') as f:
