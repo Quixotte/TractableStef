@@ -147,15 +147,19 @@ def main():
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train")
+    print 'Number of train images:'
+    print len(train_images)
 
-    with h5py.File(hd5_train_images_filename, 'w') as f:
-        f['label'] = labels_train.astype(numpy.float32)
-        f['data'] = train_images
+    for ti in train_images:
+        print ti.shape
+    #with h5py.File(hd5_train_images_filename, 'w') as f:
+     #   f['label'] = labels_train.astype(numpy.float32)
+      #  f['data'] = train_images
         #f.create_dataset("data", dtype=numpy.float32, data=train_images )
 
-    with open(hd5_meta_train, 'w') as f:
-        f.write(hd5_train_images_filename + '\n')
-        f.write(hd5_train_images_filename + '\n')
+    #with open(hd5_meta_train, 'w') as f:
+     #   f.write(hd5_train_images_filename + '\n')
+      #  f.write(hd5_train_images_filename + '\n')
 
 if __name__ == "__main__":
     main()
