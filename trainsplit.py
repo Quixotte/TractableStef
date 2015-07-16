@@ -128,8 +128,8 @@ def main():
     image_dir = os.path.join(base, "res_imgs/")
 
     #load images
-    train_images = numpy.asarray([load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)])
-
+    train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
+    print train_images.shape
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train")
