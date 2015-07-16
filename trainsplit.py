@@ -4,7 +4,7 @@ from numpy import genfromtxt, savetxt
 from sklearn.cross_validation import train_test_split
 
 import caffe
-
+import sys
 import os
 import h5py
 import shutil
