@@ -150,7 +150,7 @@ def main():
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
-    hd5_train_images_filename = os.path.join(base, "hd5_images_train")
+    hd5_train_images_filename = os.path.join(base, "hd5_images_train.h5")
     print 'Number of train images:'
     print len(train_images)
 
