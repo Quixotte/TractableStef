@@ -128,7 +128,7 @@ def main():
     image_dir = os.path.join(base, "/res_imgs/")
 
     #load images
-    train_images = [load_one_image(image_dir + d) for d in data_train if os.file.exists(image_dir + d)]
+    train_images = [load_one_image(image_dir + d) for d in data_train if os.path.exists(image_dir + d)]
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
