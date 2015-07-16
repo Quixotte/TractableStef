@@ -128,17 +128,21 @@ def main():
     image_dir = os.path.join(base, "res_imgs/")
 
     #load images
-    train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
+    #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
-    train_images = []
+
 
     correct_shape = (256, 256, 3)
+    n_correct_images = 8295     #found in earlier run, don't want to recalc every time
 
+    train_images = numpy.zeros(n_correct_images, correct_shape)
+    index = 0
     for d in data_train:
         try:
             img = load_one_image(os.path.join(image_dir, d))
             if img.shape == correct_shape:
-                train_images.append(img)
+                train_images[index] = img
+                index+=1
                 print d
                 print img.shape
         except IOError:
