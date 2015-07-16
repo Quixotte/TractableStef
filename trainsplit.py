@@ -129,8 +129,7 @@ def main():
 
     #load images
     train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
-    print '====='
-    print shape(train_images)
+
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train")
