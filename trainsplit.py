@@ -144,10 +144,6 @@ def main():
         except IOError:
             print "Couldn't find file", d
 
-
-    print 'train_images shape:'
-    print train_images.shape
-
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train")
