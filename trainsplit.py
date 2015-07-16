@@ -135,7 +135,7 @@ def main():
     correct_shape = (256, 256, 3)
     n_correct_images = 8295     #found in earlier run, don't want to recalc every time
 
-    train_images = numpy.zeros(n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2])
+    train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
     index = 0
     for d in data_train:
         try:
