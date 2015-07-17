@@ -134,6 +134,8 @@ def main():
     n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295
 
     N_train = (n_correct_images*0.25)
+    print 'Number of training images:'
+    print N_train
 
     train_images = numpy.zeros((N_train, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
     train_labels = numpy.zeros((N_train, labels_train.shape[1]), dtype=numpy.float32)
@@ -146,7 +148,7 @@ def main():
         try:
             img = load_one_image(os.path.join(image_dir, d))
             if img.shape == correct_shape:
-                if index <= N_train:
+                if index < N_train:
                     train_images[index] = img
                     train_labels[index] = labels_train[i, :]
                 else:
