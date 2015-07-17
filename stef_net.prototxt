@@ -53,7 +53,7 @@ layers {
 }
 layers {
   name: "conv1"
-  type: "Convolution"
+  type: Convolution
   bottom: "data"
   top: "conv1"
   convolution_param {
@@ -66,7 +66,7 @@ layers {
 }
 layers {
   name: "pool1"
-  type: "Pooling"
+  type: Pooling
   bottom: "conv1"
   top: "pool1"
   pooling_param {
