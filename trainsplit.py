@@ -161,7 +161,7 @@ def main():
     chunk_size = 500
     chunks = numpy.arange(int(math.ceil(n_images/chunk_size)))
     print chunks
-    hd5_meta_train_stef = os.path.join(base, "/hd5_images_stef/stef_train.txt")
+    hd5_meta_train_stef = os.path.join(base, "hd5_images_stef/stef_train.txt")
 
     with open(hd5_meta_train_stef, 'w') as meta:
         for chunk in chunks:
