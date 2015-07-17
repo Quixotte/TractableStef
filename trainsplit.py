@@ -131,7 +131,7 @@ def main():
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
     correct_shape = (256, 256, 3)   #apperantly some images are 256x256, not RGB, filtering them out
-    n_correct_images = 500     #found in earlier run, don't want to recalc every time: 8295
+    n_correct_images = 8295     #found in earlier run, don't want to recalc every time: 8295
 
     train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
     train_labels = numpy.zeros((n_correct_images, labels_train.shape[1]), dtype=numpy.float32)
@@ -144,12 +144,13 @@ def main():
                 train_images[index] = img
                 train_labels[index] = labels_train[i, :]
                 index += 1
-                if index == 1000:
-                    break
         except IOError:
             print "Couldn't find file", d
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
+
+    train_images = train_images[:500]
+    train_labels = train_labels[:500]
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train.hdf5")
     print 'Shape of images:'
@@ -159,6 +160,8 @@ def main():
     print train_labels.shape
 
     hd5_meta_train_stef = "stef_train.txt"
+
+
 
     with open(hd5_meta_train_stef, 'w') as f:
         f.write(hd5_train_images_filename + '\n')
