@@ -167,8 +167,8 @@ def main():
         for chunk in chunks:
             print 'chunk:'
             print chunk
-            tmp_train_images = train_images[chunk*chunk_size : chunk+1*chunk_size]
-            tmp_train_labels = train_labels[chunk*chunk_size : chunk+1*chunk_size]
+            tmp_train_images = train_images[chunk*chunk_size : (chunk+1)*chunk_size]
+            tmp_train_labels = train_labels[chunk*chunk_size : (chunk+1)*chunk_size]
 
             with h5py.File(hd5_train_images_filename + str(chunk), 'w') as f:
                 f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_images)
