@@ -131,7 +131,7 @@ def main():
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
     correct_shape = (256, 256, 3)   #apperantly some images are 256x256, not RGB, filtering them out
-    n_correct_images = 8295     #found in earlier run, don't want to recalc every time
+    n_correct_images = 500     #found in earlier run, don't want to recalc every time: 8295
 
     train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
     train_labels = numpy.zeros((n_correct_images, labels_train.shape[1]), dtype=numpy.float32)
@@ -143,9 +143,9 @@ def main():
             if img.shape == correct_shape:
                 train_images[index] = img
                 train_labels[index] = labels_train[i, :]
-                if i < 15:
-                    print img
                 index += 1
+                if index == 1000:
+                    break
         except IOError:
             print "Couldn't find file", d
 
