@@ -28,9 +28,27 @@ layers {
   bottom: "label"
   top: "label1"
   top: "label2"
+  top: "label3"
+  top: "label4"
+  top: "label5"
+  top: "label6"
+  top: "label7"
+  top: "label8"
+  top: "label9"
+  top: "label10"
+  top: "label11"
   slice_param {
     slice_dim: 1
     slice_point: 1
+    slice_point: 2
+    slice_point: 3
+    slice_point: 4
+    slice_point: 5
+    slice_point: 6
+    slice_point: 7
+    slice_point: 8
+    slice_point: 9
+    slice_point: 10
   }
 }
 layers {
