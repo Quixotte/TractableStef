@@ -46,14 +46,14 @@ layers {
   name: "loss"
   type: SOFTMAX_LOSS
   bottom: "fc1"
-  bottom: "label1"
+  bottom: "label"
   top: "loss"
 }
 layers {
   name: "accuracy"
   type: ACCURACY
   bottom: "fc1"
-  bottom: "label1"
+  bottom: "label"
   top: "accuracy"
   include: { phase: TEST }
 }
