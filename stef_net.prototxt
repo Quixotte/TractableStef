@@ -52,8 +52,9 @@ layers {
   }
 }
 layers {
+  ##convolution
   name: "conv1"
-  type: 4
+  type: CONVOLUTION
   bottom: "data"
   top: "conv1"
   convolution_param {
@@ -65,8 +66,9 @@ layers {
   }
 }
 layers {
+  ##pooling
   name: "pool1"
-  type: pooling
+  type: 17
   bottom: "conv1"
   top: "pool1"
   pooling_param {
@@ -77,7 +79,7 @@ layers {
 }
 layers {
   name: "conv2"
-  type: "Convolution"
+  type: 4
   bottom: "pool1"
   top: "conv2"
   convolution_param {
@@ -90,7 +92,7 @@ layers {
 }
 layers {
   name: "pool2"
-  type: "Pooling"
+  type: 17
   bottom: "conv2"
   top: "pool2"
   pooling_param {
@@ -101,7 +103,7 @@ layers {
 }
 layers {
   name: "ip1"
-  type: "InnerProduct"
+  type: 14
   bottom: "pool2"
   top: "ip1"
   inner_product_param {
@@ -113,13 +115,13 @@ layers {
 }
 layers {
   name: "relu1"
-  type: "ReLU"
+  type: 18
   bottom: "ip1"
   top: "ip1"
 }
 layers {
   name: "ip2"
-  type: "InnerProduct"
+  type: 14
   bottom: "ip1"
   top: "ip2"
   inner_product_param {
