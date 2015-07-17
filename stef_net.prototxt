@@ -11,6 +11,36 @@ layers {
   include: { phase: TRAIN }
 }
 layers {
+  name: "slicer_label"
+  type: "Slice"
+  bottom: "label"
+  ## Example of label with a shape N x 12 x 1 x 1
+  top: "lake"
+  top: "plants"
+  top: "window"
+  top: "buildings"
+  top: "grass"
+  top: "animal"
+  top: "water"
+  top: "person"
+  top: "clouds"
+  top: "sky"
+  top: "NA"
+  slice_param {
+    axis: 1
+    slice_point: 1
+    slice_point: 2
+    slice_point: 3
+    slice_point: 4
+    slice_point: 5
+    slice_point: 6
+    slice_point: 7
+    slice_point: 8
+    slice_point: 9
+    slice_point: 10
+  }
+}
+layers {
   name: "data"
   type: HDF5_DATA
   top: "data"
@@ -46,14 +76,14 @@ layers {
   name: "loss"
   type: SOFTMAX_LOSS
   bottom: "fc1"
-  bottom: "label"
+  bottom: "lake"
   top: "loss"
 }
 layers {
   name: "accuracy"
   type: ACCURACY
   bottom: "fc1"
-  bottom: "label"
+  bottom: "lake"
   top: "accuracy"
   include: { phase: TEST }
 }
