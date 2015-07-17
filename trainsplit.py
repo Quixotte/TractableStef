@@ -146,7 +146,7 @@ def main():
         try:
             img = load_one_image(os.path.join(image_dir, d))
             if img.shape == correct_shape:
-                if index < N_train:
+                if index <= N_train:
                     train_images[index] = img
                     train_labels[index] = labels_train[i, :]
                 else:
