@@ -159,7 +159,7 @@ def main():
     print chunks
     for chunk in chunks:
         print 'chunk:'
-        print chunk + "," + (chunk +1)
+        print "" + str(chunk) + "," + str(chunk +1)
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_train.hdf5")
     print 'Shape of images:'
