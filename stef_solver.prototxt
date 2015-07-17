@@ -10,5 +10,5 @@ max_iter: 10000
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 10000
-snapshot_prefix: "../alex_clibbon_hd5/train"
+snapshot_prefix: "hd5_images_stef/hd5_images_train"
 solver_mode: CPU
