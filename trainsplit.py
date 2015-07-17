@@ -51,7 +51,7 @@ def learn_and_test(solver_file):
     return accuracy
 
 def load_one_image(filename, do_print = False):
-    img = misc.imread(filename).astype(numpy.float32)
+    img = misc.imread(filename).astype(numpy.float32) * 0.00390625 #scale to 0-1, since the hdf5 layer can't do this
     if do_print:
         print type(data)
         print type(img)
