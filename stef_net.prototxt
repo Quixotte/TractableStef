@@ -14,18 +14,18 @@ layers {
   name: "slicer_label"
   type: "Slice"
   bottom: "label"
-  ## Example of label with a shape N x 12 x 1 x 1
-  top: "lake"
-  top: "plants"
-  top: "window"
-  top: "buildings"
-  top: "grass"
-  top: "animal"
-  top: "water"
-  top: "person"
-  top: "clouds"
-  top: "sky"
-  top: "NA"
+  ## Example of label with a shape N x 11 x 1 x 1
+  top: "label1"
+  top: "label2"
+  top: "label3"
+  top: "label4"
+  top: "label5"
+  top: "label6"
+  top: "label7"
+  top: "label8"
+  top: "label9"
+  top: "label10"
+  top: "label11"
   slice_param {
     axis: 1
     slice_point: 1
@@ -47,7 +47,7 @@ layers {
   top: "label"
   hdf5_data_param {
     source: "hd5_images_stef/stef_test.txt"
-    batch_size: 10
+    batch_size: 64
   }
   include: { phase: TEST }
 }
@@ -76,14 +76,14 @@ layers {
   name: "loss"
   type: SOFTMAX_LOSS
   bottom: "fc1"
-  bottom: "lake"
+  bottom: "label1"
   top: "loss"
 }
 layers {
   name: "accuracy"
   type: ACCURACY
   bottom: "fc1"
-  bottom: "lake"
+  bottom: "label1"
   top: "accuracy"
   include: { phase: TEST }
 }
