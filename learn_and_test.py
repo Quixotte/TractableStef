@@ -13,7 +13,7 @@ import csv
 import numpy
 
 def learn_and_test(solver_file):
-    caffe.set_mode_cpu()
+    caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
     solver.step(1)
 
