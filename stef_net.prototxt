@@ -8,9 +8,6 @@ layers {
     source: "hd5_images_stef/stef_train.txt"
     batch_size: 64
   }
-  transform_param {
-    scale: 0.00390625
-  }
   include: { phase: TRAIN }
 }
 layers {
@@ -19,11 +16,8 @@ layers {
   top: "data"
   top: "label"
   hdf5_data_param {
-    source: "../alex_clibbon_hd5/test_location.txt"
+    source: "hd5_images_stef/stef_test.txt"
     batch_size: 10
-  }
-  transform_param {
-    scale: 0.00390625
   }
   include: { phase: TEST }
 }
