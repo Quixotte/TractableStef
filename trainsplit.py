@@ -9,7 +9,7 @@ import os
 import h5py
 import shutil
 import csv
-
+import math
 import numpy
 from scipy import misc
 
@@ -152,6 +152,15 @@ def main():
     train_images = train_images[:500]
     train_labels = train_labels[:500]
 
+    n_images = train_images.shape[0]
+
+    chunk_size = 500
+    chunks = numpy.arange(math.ceil(n_images/chunk_size))
+    print chunks
+    for chunk in chunks:
+        print 'chunk:'
+        print chunk + "," + (chunk +1)
+
     hd5_train_images_filename = os.path.join(base, "hd5_images_train.hdf5")
     print 'Shape of images:'
     print train_images.shape
@@ -161,15 +170,13 @@ def main():
 
     hd5_meta_train_stef = "stef_train.txt"
 
+    #with open(hd5_meta_train_stef, 'w') as f:
+    #    f.write(hd5_train_images_filename + '\n')
+    #    f.write(hd5_train_images_filename + '\n')
 
-
-    with open(hd5_meta_train_stef, 'w') as f:
-        f.write(hd5_train_images_filename + '\n')
-        f.write(hd5_train_images_filename + '\n')
-
-    with h5py.File(hd5_train_images_filename, 'w') as f:
-        f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_images, chunks=True)
-        f.create_dataset("label", train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_labels)
+    #with h5py.File(hd5_train_images_filename, 'w') as f:
+    #    f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_images, chunks=True)
+    #    f.create_dataset("label", train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_labels)
         #f['data'] = train_images.astype(numpy.float32)
         #f['label'] = labels_train.astype(numpy.float32)
 
