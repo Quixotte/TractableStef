@@ -134,7 +134,7 @@ def main():
     n_correct_images = 8295     #found in earlier run, don't want to recalc every time
 
     train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
-    train_labels = numpy.zeros((n_correct_images, len(label2num)) ,dtype=numpy.float32)
+    train_labels = numpy.zeros((n_correct_images, labels_train.shape[1]) ,dtype=numpy.float32)
     index = 0
     for (i, d) in enumerate(data_train):
         try:
