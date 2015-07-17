@@ -135,6 +135,8 @@ def main():
 
     train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
     train_labels = numpy.zeros((n_correct_images, labels_train.shape[1]) ,dtype=numpy.float32)
+    print 'original shape:'
+    print train_labels.shape
     index = 0
     for (i, d) in enumerate(data_train):
         try:
@@ -157,8 +159,8 @@ def main():
 
     with h5py.File(hd5_train_images_filename, 'w') as f:
         #f['data'] = train_images.astype(numpy.float32)
-        f['label'] = labels_train.astype(numpy.float32)
-        f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_images)
+        #f['label'] = labels_train.astype(numpy.float32)
+        #f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_images)
 
     #with open(hd5_meta_train, 'w') as f:
      #   f.write(hd5_train_images_filename + '\n')
