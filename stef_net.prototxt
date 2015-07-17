@@ -1,4 +1,4 @@
-name: "LogisticRegressionNet"
+name: "StefNet"
 layers {
   name: "data"
   type: HDF5_DATA
@@ -12,7 +12,7 @@ layers {
 }
 layers {
   name: "slicer_label"
-  type: Slice
+  type: "Slice"
   bottom: "label"
   top: "label1"
   top: "label2"
