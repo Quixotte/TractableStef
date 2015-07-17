@@ -52,37 +52,94 @@ layers {
   }
 }
 layers {
-  name: "fc1"
-  type: INNER_PRODUCT
+  name: "conv1"
+  type: "Convolution"
   bottom: "data"
-  top: "fc1"
-  blobs_lr: 1
-  blobs_lr: 2
-  weight_decay: 1
-  weight_decay: 0
-  inner_product_param {
-    num_output: 2
+  top: "conv1"
+  convolution_param {
+    num_output: 20
+    kernel_size: 5
     weight_filler {
-      type: "gaussian"
-      std: 0.01
+      type: "xavier"
     }
-    bias_filler {
-      type: "constant"
-      value: 0
+  }
+}
+layers {
+  name: "pool1"
+  type: "Pooling"
+  bottom: "conv1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2"
+  convolution_param {
+    num_output: 50
+    kernel_size: 5
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+layers {
+  name: "pool2"
+  type: "Pooling"
+  bottom: "conv2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  name: "ip1"
+  type: "InnerProduct"
+  bottom: "pool2"
+  top: "ip1"
+  inner_product_param {
+    num_output: 500
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+layers {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "ip1"
+  top: "ip1"
+}
+layers {
+  name: "ip2"
+  type: "InnerProduct"
+  bottom: "ip1"
+  top: "ip2"
+  inner_product_param {
+    num_output: 10
+    weight_filler {
+      type: "xavier"
     }
   }
 }
 layers {
   name: "loss"
   type: SOFTMAX_LOSS
-  bottom: "fc1"
+  bottom: "ip2"
   bottom: "label1"
   top: "loss"
 }
 layers {
   name: "accuracy"
   type: ACCURACY
-  bottom: "fc1"
+  bottom: "ip2"
   bottom: "label1"
   top: "accuracy"
   include: { phase: TEST }

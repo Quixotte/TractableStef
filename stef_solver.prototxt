@@ -1,10 +1,10 @@
 net: "stef_net.prototxt"
-test_iter: 1000
-test_interval: 1000
+test_iter: 200
+test_interval: 100
 base_lr: 0.01
 lr_policy: "step"
 gamma: 0.1
-stepsize: 5000
+stepsize: 1
 display: 1000
 max_iter: 200
 momentum: 0.9
