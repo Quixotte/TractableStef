@@ -1,5 +1,5 @@
 name: "StefNet"
-layers {
+layer {
   name: "data"
   type: HDF5_DATA
   top: "data"
@@ -10,7 +10,7 @@ layers {
   }
   include: { phase: TRAIN }
 }
-layers {
+layer {
   name: "data"
   type: HDF5_DATA
   top: "data"
@@ -32,7 +32,7 @@ layer {
     slice_point: 1
   }
 }
-layers {
+layer {
   name: "fc1"
   type: INNER_PRODUCT
   bottom: "data"
@@ -53,14 +53,14 @@ layers {
     }
   }
 }
-layers {
+layer {
   name: "loss"
   type: SOFTMAX_LOSS
   bottom: "fc1"
   bottom: "label1"
   top: "loss"
 }
-layers {
+layer {
   name: "accuracy"
   type: ACCURACY
   bottom: "fc1"
