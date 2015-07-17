@@ -21,7 +21,7 @@ layers {
   }
   include: { phase: TEST }
 }
-layer {
+layers {
   name: "slice_pair"
   type: "Slice"
   bottom: "label"
