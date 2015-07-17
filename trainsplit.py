@@ -143,7 +143,7 @@ def main():
             img = load_one_image(os.path.join(image_dir, d))
             if img.shape == correct_shape:
                 train_images[index] = img
-                train_labels[index] = labels_train[i]
+                train_labels[index] = labels_train[i, :]
                 index+=1
         except IOError:
             print "Couldn't find file", d
