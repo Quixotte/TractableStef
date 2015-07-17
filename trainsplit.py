@@ -151,7 +151,7 @@ def main():
 
     n_images = train_images.shape[0]
 
-    hd5_train_images_filename = os.path.join(base, "/hd5_images_stef/hd5_images_train.hdf5")
+    hd5_train_images_filename = os.path.join(base, "hd5_images_stef/hd5_images_train.hdf5")
     print 'Shape of images:'
     print train_images.shape
 
