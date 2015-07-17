@@ -169,10 +169,13 @@ def main():
             print chunk
             tmp_train_images = train_images[chunk*chunk_size : (chunk+1)*chunk_size]
             tmp_train_labels = train_labels[chunk*chunk_size : (chunk+1)*chunk_size]
+            try:
+                with h5py.File(hd5_train_images_filename + str(chunk) + ".hdf5", 'w') as f:
+                    f.create_dataset("data", tmp_train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_images)
+                    f.create_dataset("label", tmp_train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_labels)
+            except IOError:
+                print 'IOerror, carrying on'
 
-            with h5py.File(hd5_train_images_filename + str(chunk) + ".hdf5", 'w') as f:
-                f.create_dataset("data", tmp_train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_images)
-                f.create_dataset("label", tmp_train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_labels)
 
             meta.write(hd5_train_images_filename + str(chunk) + '\n')
 
