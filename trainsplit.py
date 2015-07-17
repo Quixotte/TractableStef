@@ -233,5 +233,5 @@ def main():
 
 
 if __name__ == "__main__":
-    #main()
-    load_one_image("2.jpg")
+    main()
+    #load_one_image("2.jpg")
