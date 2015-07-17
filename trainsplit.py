@@ -130,36 +130,51 @@ def main():
     #load images
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
-    correct_shape = (256, 256, 3)   #apperantly some images are 256x256, not RGB, filtering them out
-    n_correct_images = 8295     #found in earlier run, don't want to recalc every time: 8295
+    correct_shape = (256, 256, 3)   #apperantly some images are 256x256, not RGB, filtering them out, could convert but just want to quickfix
+    n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295
 
-    train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
-    train_labels = numpy.zeros((n_correct_images, labels_train.shape[1]), dtype=numpy.float32)
+    N_train = (n_correct_images*0.25)
+
+    train_images = numpy.zeros((N_train, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
+    train_labels = numpy.zeros((N_train, labels_train.shape[1]), dtype=numpy.float32)
+
+    test_images = numpy.zeros((n_correct_images - N_train, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
+    test_labels = numpy.zeros((n_correct_images - N_train, labels_train.shape[1]), dtype=numpy.float32)
 
     index = 0
     for (i, d) in enumerate(data_train):
         try:
             img = load_one_image(os.path.join(image_dir, d))
             if img.shape == correct_shape:
-                train_images[index] = img
-                train_labels[index] = labels_train[i, :]
+                if index < N_train:
+                    train_images[index] = img
+                    train_labels[index] = labels_train[i, :]
+                else:
+                    test_images[index - N_train] = img
+                    test_labels[index - N_train] = labels_train[i, :]
                 index += 1
         except IOError:
             print "Couldn't find file", d
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
-    n_images = train_images.shape[0]
+
 
     hd5_train_images_filename = os.path.join(base, "hd5_images_stef/hd5_images_train")
+    hd5_test_images_filename = os.path.join(base, "hd5_images_stef/hd5_images_test")
     print 'Shape of images:'
     print train_images.shape
 
     print 'Shape of labels:'
     print train_labels.shape
 
+
     chunk_size = 64
-    chunks = numpy.arange(int(math.ceil(n_images/chunk_size)))
+
+    #Write away training data
+
+    n__train_images = train_images.shape[0]
+    chunks = numpy.arange(int(math.ceil(n__train_images/chunk_size)))
     print chunks
     hd5_meta_train_stef = os.path.join(base, "hd5_images_stef/stef_train.txt")
 
@@ -177,8 +192,29 @@ def main():
                 print 'IOerror, carrying on'
 
 
-            meta.write(hd5_train_images_filename + str(chunk) + '\n')
+            meta.write(hd5_train_images_filename + str(chunk) + ".hdf5" + '\n')
 
+    #Write away test data
+    n_test_images = test_images.shape[0]
+    chunks = numpy.arange(int(math.ceil(n_test_images/chunk_size)))
+    print chunks
+    hd5_meta_test_stef = os.path.join(base, "hd5_images_stef/stef_test.txt")
+
+    with open(hd5_meta_test_stef, 'w') as meta:
+        for chunk in chunks:
+            print 'chunk:'
+            print chunk
+            tmp_test_images = test_images[chunk*chunk_size : (chunk+1)*chunk_size]
+            tmp_test_labels = test_labels[chunk*chunk_size : (chunk+1)*chunk_size]
+            try:
+                with h5py.File(hd5_test_images_filename + str(chunk) + ".hdf5", 'w') as f:
+                    f.create_dataset("data", tmp_test_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_test_images)
+                    f.create_dataset("label", tmp_test_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_test_labels)
+            except IOError:
+                print 'IOerror, carrying on'
+
+
+            meta.write(hd5_test_images_filename + str(chunk) + ".hdf5" + '\n')
 
     #with open(hd5_meta_train_stef, 'w') as f:
     #    f.write(hd5_train_images_filename + '\n')
