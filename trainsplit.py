@@ -151,13 +151,6 @@ def main():
 
     n_images = train_images.shape[0]
 
-    chunk_size = 500
-    chunks = numpy.arange(math.ceil(n_images/chunk_size))
-    print chunks
-    for chunk in chunks:
-        print 'chunk:'
-        print "" + str(chunk) + "," + str(chunk +1)
-
     hd5_train_images_filename = os.path.join(base, "hd5_images_train.hdf5")
     print 'Shape of images:'
     print train_images.shape
@@ -165,7 +158,24 @@ def main():
     print 'Shape of labels:'
     print train_labels.shape
 
+    chunk_size = 500
+    chunks = numpy.arange(int(math.ceil(n_images/chunk_size)))
+    print chunks
     hd5_meta_train_stef = "stef_train.txt"
+
+    with open(hd5_meta_train_stef, 'w') as meta:
+        for chunk in chunks:
+            print 'chunk:'
+            print chunk
+            tmp_train_images = train_images[chunk*chunk_size : chunk+1*chunk_size]
+            tmp_train_labels = train_labels[chunk*chunk_size : chunk+1*chunk_size]
+
+            with h5py.File(hd5_train_images_filename + str(chunk), 'w') as f:
+                f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_images)
+                f.create_dataset("label", train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_labels)
+
+            meta.write(hd5_train_images_filename + str(chunk) + '\n')
+
 
     #with open(hd5_meta_train_stef, 'w') as f:
     #    f.write(hd5_train_images_filename + '\n')
