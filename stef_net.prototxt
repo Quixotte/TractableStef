@@ -21,14 +21,14 @@ layers {
   }
   include: { phase: TEST }
 }
-layers {
-  name: "slicer_label"
+layer {
+  name: "slice_pair"
   type: "Slice"
   bottom: "label"
   top: "label1"
   top: "label2"
   slice_param {
-    axis: 1
+    slice_dim: 1
     slice_point: 1
   }
 }
