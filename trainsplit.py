@@ -134,7 +134,7 @@ def main():
     n_correct_images = 8295     #found in earlier run, don't want to recalc every time
 
     train_images = numpy.zeros((n_correct_images, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
-    train_labels = numpy.zeros((n_correct_images, labels_train.shape[1]) ,dtype=numpy.float32)
+    train_labels = numpy.zeros((n_correct_images, labels_train.shape[1]), dtype=numpy.float32)
     print 'original shape:'
     print train_labels.shape
     index = 0
@@ -144,7 +144,7 @@ def main():
             if img.shape == correct_shape:
                 train_images[index] = img
                 train_labels[index] = labels_train[i, :]
-                index+=1
+                index += 1
         except IOError:
             print "Couldn't find file", d
 
@@ -155,7 +155,7 @@ def main():
     print train_images.shape
 
     print 'Shape of labels:'
-    print labels_train.shape
+    print train_labels.shape
 
     # h5py.File(hd5_train_images_filename, 'w') as f:
         #f['data'] = train_images.astype(numpy.float32)
