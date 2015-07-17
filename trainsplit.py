@@ -3,10 +3,10 @@ from sklearn import cross_validation
 from numpy import genfromtxt, savetxt
 from sklearn.cross_validation import train_test_split
 
-#import caffe
-#import sys
+import caffe
+import sys
 import os
-#import h5py
+import h5py
 import shutil
 import csv
 import math
