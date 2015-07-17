@@ -12,9 +12,8 @@ layers {
 }
 layers {
   name: "slicer_label"
-  type: "Slice"
+  type: Slice
   bottom: "label"
-  ## Example of label with a shape N x 11 x 1 x 1
   top: "label1"
   top: "label2"
   top: "label3"
