@@ -133,7 +133,7 @@ def main():
     correct_shape = (256, 256, 3)   #apperantly some images are 256x256, not RGB, filtering them out, could convert but just want to quickfix
     n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295
 
-    N_train = (n_correct_images*0.25)
+    N_train = int(n_correct_images*0.25)
     print 'Number of training images:'
     print N_train
 
