@@ -149,9 +149,6 @@ def main():
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
-    train_images = train_images[:500]
-    train_labels = train_labels[:500]
-
     n_images = train_images.shape[0]
 
     chunk_size = 500
