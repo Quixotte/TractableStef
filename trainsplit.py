@@ -3,10 +3,10 @@ from sklearn import cross_validation
 from numpy import genfromtxt, savetxt
 from sklearn.cross_validation import train_test_split
 
-import caffe
-import sys
+#import caffe
+#import sys
 import os
-import h5py
+#import h5py
 import shutil
 import csv
 import math
@@ -51,7 +51,9 @@ def learn_and_test(solver_file):
     return accuracy
 
 def load_one_image(filename, do_print = False):
-    img = misc.imread(filename).astype(numpy.float32) * 0.00390625 #scale to 0-1, since the hdf5 layer can't do this
+    #Have to be transposed for the 3 x 256 x 256 instead of 256x256x3 (which it was originally)
+    #scale from 0-256 to 0-1, since the hdf5 layer can't do this
+    img = misc.imread(filename).astype(numpy.float32).T * 0.00390625
     if do_print:
         print type(data)
         print type(img)
@@ -130,7 +132,7 @@ def main():
     #load images
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
-    correct_shape = (256, 256, 3)   #apperantly some images are 256x256, not RGB, filtering them out, could convert but just want to quickfix
+    correct_shape = (3, 256, 256)   #apperantly some images are 256x256, not RGB, filtering them out, could convert but just want to quickfix
     n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295
 
     N_train = int(n_correct_images*0.25)
@@ -231,4 +233,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+    load_one_image("2.jpg")
