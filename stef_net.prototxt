@@ -22,7 +22,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "slice_pair"
+  name: "label_slicer"
   type: "Slice"
   bottom: "label"
   top: "label1"
