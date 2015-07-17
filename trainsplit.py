@@ -143,6 +143,8 @@ def main():
             if img.shape == correct_shape:
                 train_images[index] = img
                 train_labels[index] = labels_train[i, :]
+                if i < 15:
+                    print img
                 index += 1
         except IOError:
             print "Couldn't find file", d
@@ -164,7 +166,7 @@ def main():
 
     with h5py.File(hd5_train_images_filename, 'w') as f:
         f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_images)
-        #f.create_dataset("label", train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_labels)
+        f.create_dataset("label", train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_labels)
         #f['data'] = train_images.astype(numpy.float32)
         #f['label'] = labels_train.astype(numpy.float32)
 
