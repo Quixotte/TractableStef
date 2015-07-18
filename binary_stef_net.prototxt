@@ -147,3 +147,4 @@ layers {
   bottom: "label1"
   top: "accuracy"
   include: { phase: TEST }
+}
