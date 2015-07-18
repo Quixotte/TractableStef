@@ -6,7 +6,7 @@ layers {
   top: "label"
   hdf5_data_param {
     source: "hd5_images_stef/stef_train.txt"
-    batch_size: 64
+    batch_size: 16
   }
   include: { phase: TRAIN }
 }
@@ -17,7 +17,7 @@ layers {
   top: "label"
   hdf5_data_param {
     source: "hd5_images_stef/stef_test.txt"
-    batch_size: 64
+    batch_size: 16
   }
   include: { phase: TEST }
 }
@@ -132,84 +132,84 @@ layers {
   }
 }
 layers {
-  name: "loss"
+  name: "loss1"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label1"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss2"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label2"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss3"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label3"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss4"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label4"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss5"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label5"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss6"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label6"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss7"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label7"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss8"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label8"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss9"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label9"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss10"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label10"
   top: "loss"
 }
 layers {
-  name: "loss"
+  name: "loss11"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label11"
   top: "loss"
 }
 layers {
-  name: "accuracy"
+  name: "accuracy1"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label1"
@@ -217,7 +217,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy2"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label2"
@@ -225,7 +225,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy3"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label3"
@@ -233,7 +233,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy4"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label4"
@@ -241,7 +241,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy5"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label5"
@@ -249,7 +249,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy6"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label6"
@@ -257,7 +257,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy7"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label7"
@@ -265,7 +265,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy8"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label8"
@@ -273,7 +273,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy9"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label9"
@@ -281,7 +281,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy10"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label10"
@@ -289,7 +289,7 @@ layers {
   include: { phase: TEST }
 }
 layers {
-  name: "accuracy"
+  name: "accuracy11"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label11"
