@@ -26,4 +26,4 @@ def learn_and_test(solver_file):
     #return accuracy
 
 if __name__ == "__main__":
-    learn_and_test('stef_binary_solver.prototxt')
+    learn_and_test('binary_stef_solver.prototxt')
