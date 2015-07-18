@@ -51,6 +51,11 @@ layers {
     slice_point: 10
   }
 }
+layers{
+  name:"silence1"
+  type: SILENCE
+  bottom: "label2"
+}
 layers {
   ##convolution
   name: "conv1"
