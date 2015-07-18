@@ -217,7 +217,6 @@ layers {
   bottom: "label12"
   top: "loss12"
 }
-
 layers {
   name: "accuracy1"
   type: ACCURACY
