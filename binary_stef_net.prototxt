@@ -56,6 +56,14 @@ layers{
   type: SILENCE
   bottom: "label2"
   bottom: "label3"
+  bottom: "label4"
+  bottom: "label5"
+  bottom: "label6"
+  bottom: "label7"
+  bottom: "label8"
+  bottom: "label9"
+  bottom: "label10"
+  bottom: "label11"
 }
 layers {
   ##convolution
