@@ -105,23 +105,13 @@ def main():
     print 'First few labels:', labels_binary[0:6]
     print '==='
 
-    N = len(labels_binary)
-    N_train = int(N*0.90)
+    data_train = data_all
+    labels_train = labels_binary
 
-    data_train = data_all[0:N_train]
-    data_test  = data_all[N_train:N]
-    labels_train = labels_binary[0:N_train]
-    labels_test  = labels_binary[N_train:N]
-
-    print '==='
-    print data_train[0:100]
 
 
     # TODO: doesn't work with vector labels
     # data_train, data_test, labels_train, labels_test = train_test_split(data_all, labels_all, test_size=0.20, random_state=42)
-
-    print '==='
-    print labels_train
 
     # HDF5DataLayer source should be a file containing a list of HDF5 filenames.
     # To show this off, we'll list the same data file twice.
@@ -136,7 +126,7 @@ def main():
                                     #Todo: Can be done waaay better with caffe.io, but that can wait
     n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295, nice for pre-allocation of memory though
 
-    N_train = int(n_correct_images*0.25)
+    N_train = int(n_correct_images*0.9)
     print 'Number of training images:'
     print N_train
 
@@ -177,7 +167,6 @@ def main():
     chunk_size = 64
     if do_write:
         #Write away training data
-
         n__train_images = train_images.shape[0]
         chunks = numpy.arange(int(math.ceil(n__train_images/chunk_size)))
         print chunks
