@@ -92,7 +92,7 @@ def main():
     #     # labels_binary[i] = label_coded
     #     labels_binary[i] = numpy.array(label_coded, dtype=numpy.uint8)
 
-    labels_binary = numpy.zeros((len(labels_all), 12), dtype=numpy.float32)
+    labels_binary = numpy.zeros((len(labels_all), len(label2num)), dtype=numpy.float32)
     for (i, v_label) in enumerate(labels_all):
         # label_coded = [0] * 11
         for num in v_label:
@@ -133,7 +133,8 @@ def main():
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
     correct_shape = (3, 256, 256)   #apperantly some images are 256x256, not RGB, filtering them out, could convert but just want to quickfix
-    n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295
+                                    #Todo: Can be done waaay better with caffe.io, but that can wait
+    n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295, nice for pre-allocation of memory though
 
     N_train = int(n_correct_images*0.25)
     print 'Number of training images:'
