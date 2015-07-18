@@ -75,7 +75,7 @@ def main():
     hd5_meta_train     = os.path.join(base, 'train.txt')
     hd5_meta_test      = os.path.join(base, 'test.txt')
 
-    label2num = {'lake':1, 'plants':2, 'window':3, 'buildings':4, 'grass':5, 'animal':6, 'water':7, 'person':8, 'clouds':9, 'sky':10, 'NA':11}
+    label2num = {'lake':1, 'plants':2, 'window':3, 'buildings':4, 'grass':5, 'animal':6, 'water':7, 'person':8, 'clouds':9, 'sky':10, 'NA':0}
 
     dataset = importCSV(file_labels, delimiterChar=' ')
 
