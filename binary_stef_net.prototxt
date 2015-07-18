@@ -23,7 +23,7 @@ layers {
 }
 layers {
   name: "label_slicer"
-  type: 33 
+  type: SLICE
   ##slice
   bottom: "label"
   top: "label1"
