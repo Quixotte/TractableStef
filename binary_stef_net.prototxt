@@ -55,6 +55,7 @@ layers{
   name:"silence1"
   type: SILENCE
   bottom: "label2"
+  bottom: "label3"
 }
 layers {
   ##convolution
