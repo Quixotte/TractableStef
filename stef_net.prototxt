@@ -136,84 +136,84 @@ layers {
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label1"
-  top: "loss"
+  top: "loss1"
 }
 layers {
   name: "loss2"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label2"
-  top: "loss"
+  top: "loss2"
 }
 layers {
   name: "loss3"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label3"
-  top: "loss"
+  top: "loss3"
 }
 layers {
   name: "loss4"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label4"
-  top: "loss"
+  top: "loss4"
 }
 layers {
   name: "loss5"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label5"
-  top: "loss"
+  top: "loss5"
 }
 layers {
   name: "loss6"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label6"
-  top: "loss"
+  top: "loss6"
 }
 layers {
   name: "loss7"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label7"
-  top: "loss"
+  top: "loss7"
 }
 layers {
   name: "loss8"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label8"
-  top: "loss"
+  top: "loss8"
 }
 layers {
   name: "loss9"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label9"
-  top: "loss"
+  top: "loss9"
 }
 layers {
   name: "loss10"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label10"
-  top: "loss"
+  top: "loss10"
 }
 layers {
   name: "loss11"
   type: SOFTMAX_LOSS
   bottom: "ip2"
   bottom: "label11"
-  top: "loss"
+  top: "loss11"
 }
 layers {
   name: "accuracy1"
   type: ACCURACY
   bottom: "ip2"
   bottom: "label1"
-  top: "accuracy"
+  top: "accuracy1"
   include: { phase: TEST }
 }
 layers {
@@ -221,7 +221,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label2"
-  top: "accuracy"
+  top: "accuracy2"
   include: { phase: TEST }
 }
 layers {
@@ -229,7 +229,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label3"
-  top: "accuracy"
+  top: "accuracy3"
   include: { phase: TEST }
 }
 layers {
@@ -237,7 +237,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label4"
-  top: "accuracy"
+  top: "accuracy4"
   include: { phase: TEST }
 }
 layers {
@@ -245,7 +245,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label5"
-  top: "accuracy"
+  top: "accuracy5"
   include: { phase: TEST }
 }
 layers {
@@ -253,7 +253,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label6"
-  top: "accuracy"
+  top: "accuracy6"
   include: { phase: TEST }
 }
 layers {
@@ -261,7 +261,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label7"
-  top: "accuracy"
+  top: "accuracy7"
   include: { phase: TEST }
 }
 layers {
@@ -269,7 +269,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label8"
-  top: "accuracy"
+  top: "accuracy8"
   include: { phase: TEST }
 }
 layers {
@@ -277,7 +277,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label9"
-  top: "accuracy"
+  top: "accuracy9"
   include: { phase: TEST }
 }
 layers {
@@ -285,7 +285,7 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label10"
-  top: "accuracy"
+  top: "accuracy10"
   include: { phase: TEST }
 }
 layers {
@@ -293,6 +293,6 @@ layers {
   type: ACCURACY
   bottom: "ip2"
   bottom: "label11"
-  top: "accuracy"
+  top: "accuracy11"
   include: { phase: TEST }
 }
