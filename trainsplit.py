@@ -106,7 +106,7 @@ def main():
     print '==='
 
     N = len(labels_binary)
-    N_train = int(N*0.25)
+    N_train = int(N*0.90)
 
     data_train = data_all[0:N_train]
     data_test  = data_all[N_train:N]
@@ -173,7 +173,7 @@ def main():
 
     print train_labels
 
-    do_write = False
+    do_write = True
     chunk_size = 64
     if do_write:
         #Write away training data
