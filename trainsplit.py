@@ -162,8 +162,6 @@ def main():
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
-
-
     hd5_train_images_filename = os.path.join(base, "hd5_images_stef/hd5_images_train")
     hd5_test_images_filename = os.path.join(base, "hd5_images_stef/hd5_images_test")
     print 'Shape of images:'
@@ -172,64 +170,55 @@ def main():
     print 'Shape of labels:'
     print train_labels.shape
 
+    print train_labels
 
+    do_write = False
     chunk_size = 64
+    if do_write:
+        #Write away training data
 
-    #Write away training data
+        n__train_images = train_images.shape[0]
+        chunks = numpy.arange(int(math.ceil(n__train_images/chunk_size)))
+        print chunks
+        hd5_meta_train_stef = os.path.join(base, "hd5_images_stef/stef_train.txt")
 
-    n__train_images = train_images.shape[0]
-    chunks = numpy.arange(int(math.ceil(n__train_images/chunk_size)))
-    print chunks
-    hd5_meta_train_stef = os.path.join(base, "hd5_images_stef/stef_train.txt")
-
-    with open(hd5_meta_train_stef, 'w') as meta:
-        for chunk in chunks:
-            print 'chunk:'
-            print chunk
-            tmp_train_images = train_images[chunk*chunk_size : (chunk+1)*chunk_size]
-            tmp_train_labels = train_labels[chunk*chunk_size : (chunk+1)*chunk_size]
-            try:
-                with h5py.File(hd5_train_images_filename + str(chunk) + ".hdf5", 'w') as f:
-                    f.create_dataset("data", tmp_train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_images)
-                    f.create_dataset("label", tmp_train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_labels)
-            except IOError:
-                print 'IOerror, carrying on'
-
-
-            meta.write(hd5_train_images_filename + str(chunk) + ".hdf5" + '\n')
-
-    #Write away test data
-    n_test_images = test_images.shape[0]
-    chunks = numpy.arange(int(math.ceil(n_test_images/chunk_size)))
-    print chunks
-    hd5_meta_test_stef = os.path.join(base, "hd5_images_stef/stef_test.txt")
-
-    with open(hd5_meta_test_stef, 'w') as meta:
-        for chunk in chunks:
-            print 'chunk:'
-            print chunk
-            tmp_test_images = test_images[chunk*chunk_size : (chunk+1)*chunk_size]
-            tmp_test_labels = test_labels[chunk*chunk_size : (chunk+1)*chunk_size]
-            try:
-                with h5py.File(hd5_test_images_filename + str(chunk) + ".hdf5", 'w') as f:
-                    f.create_dataset("data", tmp_test_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_test_images)
-                    f.create_dataset("label", tmp_test_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_test_labels)
-            except IOError:
-                print 'IOerror, carrying on'
+        with open(hd5_meta_train_stef, 'w') as meta:
+            for chunk in chunks:
+                print 'chunk:'
+                print chunk
+                tmp_train_images = train_images[chunk*chunk_size : (chunk+1)*chunk_size]
+                tmp_train_labels = train_labels[chunk*chunk_size : (chunk+1)*chunk_size]
+                try:
+                    with h5py.File(hd5_train_images_filename + str(chunk) + ".hdf5", 'w') as f:
+                        f.create_dataset("data", tmp_train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_images)
+                        f.create_dataset("label", tmp_train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_train_labels)
+                except IOError:
+                    print 'IOerror, carrying on'
 
 
-            meta.write(hd5_test_images_filename + str(chunk) + ".hdf5" + '\n')
+                meta.write(hd5_train_images_filename + str(chunk) + ".hdf5" + '\n')
 
-    #with open(hd5_meta_train_stef, 'w') as f:
-    #    f.write(hd5_train_images_filename + '\n')
-    #    f.write(hd5_train_images_filename + '\n')
+        #Write away test data
+        n_test_images = test_images.shape[0]
+        chunks = numpy.arange(int(math.ceil(n_test_images/chunk_size)))
+        print chunks
+        hd5_meta_test_stef = os.path.join(base, "hd5_images_stef/stef_test.txt")
 
-    #with h5py.File(hd5_train_images_filename, 'w') as f:
-    #    f.create_dataset("data", train_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_images, chunks=True)
-    #    f.create_dataset("label", train_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=train_labels)
-        #f['data'] = train_images.astype(numpy.float32)
-        #f['label'] = labels_train.astype(numpy.float32)
+        with open(hd5_meta_test_stef, 'w') as meta:
+            for chunk in chunks:
+                print 'chunk:'
+                print chunk
+                tmp_test_images = test_images[chunk*chunk_size : (chunk+1)*chunk_size]
+                tmp_test_labels = test_labels[chunk*chunk_size : (chunk+1)*chunk_size]
+                try:
+                    with h5py.File(hd5_test_images_filename + str(chunk) + ".hdf5", 'w') as f:
+                        f.create_dataset("data", tmp_test_images.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_test_images)
+                        f.create_dataset("label", tmp_test_labels.shape , compression='gzip', compression_opts=1, dtype=numpy.float32, data=tmp_test_labels)
+                except IOError:
+                    print 'IOerror, carrying on'
 
+
+                meta.write(hd5_test_images_filename + str(chunk) + ".hdf5" + '\n')
 
 
 if __name__ == "__main__":
