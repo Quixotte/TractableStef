@@ -15,7 +15,14 @@ import numpy
 def learn_and_test(solver_file):
     caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
+
+    solver.restore()
+
     solver.step(1)
+
+    
+
+
 
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
