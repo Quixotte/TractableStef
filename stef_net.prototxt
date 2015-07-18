@@ -279,7 +279,8 @@ layers {
   bottom: "label9"
   top: "accuracy"
   include: { phase: TEST }
-}layers {
+}
+layers {
   name: "accuracy"
   type: ACCURACY
   bottom: "ip2"
