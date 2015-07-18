@@ -37,7 +37,6 @@ layers {
   top: "label9"
   top: "label10"
   top: "label11"
-  top: "label12"
   slice_param {
     slice_dim: 1
     slice_point: 1
@@ -50,7 +49,6 @@ layers {
     slice_point: 8
     slice_point: 9
     slice_point: 10
-    slice_point : 11
   }
 }
 layers {
