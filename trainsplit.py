@@ -83,6 +83,7 @@ def main():
     labels_all = [x[1:] for x in dataset]
     labels_all = [map(lambda label: label2num[label], x) for x in labels_all]
 
+    print labels_all
     # labels_binary = [0] * len(labels_all)
     # for (i, v_label) in enumerate(labels_all):
     #     label_coded = [0] * 11
@@ -91,7 +92,6 @@ def main():
 
     #     # labels_binary[i] = label_coded
     #     labels_binary[i] = numpy.array(label_coded, dtype=numpy.uint8)
-
     labels_binary = numpy.zeros((len(labels_all), len(label2num)), dtype=numpy.float32)
     for (i, v_label) in enumerate(labels_all):
         # label_coded = [0] * 11
