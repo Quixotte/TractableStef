@@ -65,17 +65,13 @@ def main():
         except IOError:
             print "Couldn't find file", d
 
-    mean_image = numpy.mean(images)
+    mean_image = numpy.mean(images, axis=0)
     numpy_file_name = os.path.join(base, "mean_image.npy")
     numpy.save(numpy_file_name, mean_image)
 
-    loaded_img = numpy.load(numpy_file_name)
-
-    if mean_image == loaded_img:
-        print "they're the same"
 
 
 if __name__ == "__main__":
+    main()
     loaded_img = numpy.load(numpy_file_name)
     print loaded_img
-    #main()
