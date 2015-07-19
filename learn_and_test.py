@@ -14,16 +14,18 @@ import numpy
 
 def learn_and_test(solver_file):
 
-    net = caffe.Net(solver_file)
-    net.forward() # this will load the next mini-batch as defined in the net
-    label1 = net.blobs['label1'].data # or whatever you want
+    #net = caffe.Net(solver_file)
+    #net.forward() # this will load the next mini-batch as defined in the net
+    #label1 = net.blobs['label1'].data # or whatever you want
 
-    print label1
+    #print label1
 
-    #caffe.set_mode_gpu()
-    #solver = caffe.get_solver(solver_file)
-    #solver.step(100)
+    caffe.set_mode_gpu()
+    solver = caffe.get_solver(solver_file)
+    solver.step(1)
 
+    labels = solver.train_nets[0].blobs['label1']
+    print labels
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
     #for i in range(test_iters):
