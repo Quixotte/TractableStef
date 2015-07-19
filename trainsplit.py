@@ -70,11 +70,6 @@ def main():
     if not os.path.exists(os.path.abspath(dirname)):
         os.makedirs(dirname)
 
-    hd5_train_filename = os.path.join(dirname, 'train.h5')
-    hd5_test_filename  = os.path.join(dirname, 'test.h5')
-    hd5_meta_train     = os.path.join(base, 'train.txt')
-    hd5_meta_test      = os.path.join(base, 'test.txt')
-
     label2num = {'lake':1, 'plants':2, 'window':3, 'buildings':4, 'grass':5, 'animal':6, 'water':7, 'person':8, 'clouds':9, 'sky':10, 'NA':0}
 
     dataset = importCSV(file_labels, delimiterChar=' ')
@@ -83,7 +78,6 @@ def main():
     labels_all = [x[1:] for x in dataset]
     labels_all = [map(lambda label: label2num[label], x) for x in labels_all]
 
-    print labels_all
     # labels_binary = [0] * len(labels_all)
     # for (i, v_label) in enumerate(labels_all):
     #     label_coded = [0] * 11
@@ -102,7 +96,7 @@ def main():
         # labels_binary[i] = numpy.array(label_coded, dtype=numpy.uint8)
 
     print labels_binary
-    print 'First few labels:', labels_binary[0:6]
+    print 'First few labels:', labels_binary[0:10]
     print '==='
 
     data_train = data_all
@@ -122,8 +116,6 @@ def main():
     #load images
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
-    correct_shape = (3, 256, 256)   #apperantly some images are 256x256, not RGB, filtering them out, could convert but just want to quickfix
-                                    #Todo: Can be done waaay better with caffe.io, but that can wait
     n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295, nice for pre-allocation of memory though
 
     N_train = int(n_correct_images*0.9)
@@ -142,16 +134,19 @@ def main():
     for (i, d) in enumerate(data_train):
         try:
             img = load_one_image(os.path.join(image_dir, d), mean_image)
-            if img.shape == correct_shape:
-                if index < N_train:
-                    train_images[index] = img
-                    train_labels[index] = labels_train[i, :]
-                else:
-                    test_images[index - N_train] = img
-                    test_labels[index - N_train] = labels_train[i, :]
-                index += 1
+            if index < N_train:
+                print 't'
+                #train_images[index] = img
+                #train_labels[index] = labels_train[i, :]
+            else:
+                print 't'
+                #test_images[index - N_train] = img
+                #test_labels[index - N_train] = labels_train[i, :]
+            index += 1
         except IOError:
             print "Couldn't find file", d
+
+    print "n_correct_images =" , str(index)
 
     #test_images = [load_one_image(image_dir + d) for d in data_test]
 
