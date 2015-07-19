@@ -144,8 +144,6 @@ def main():
                 test_labels[index - N_train] = labels_train[i, :]
             index += 1
 
-        if i > 8000:
-            break #gettin out of memory errors, gotta use less images i guess
         except IOError:
             print "Couldn't find file", d
 
