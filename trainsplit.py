@@ -136,12 +136,12 @@ def main():
     for (i, d) in enumerate(data_train):
         try:
             img = load_one_image(os.path.join(image_dir, d), mean_image)
-            if index < N_train:
-                print 't'
+            #if index < N_train:
+             #   print 't'
                 #train_images[index] = img
                 #train_labels[index] = labels_train[i, :]
-            else:
-                print 't'
+            #else:
+              #  print 't'
                 #test_images[index - N_train] = img
                 #test_labels[index - N_train] = labels_train[i, :]
             index += 1
