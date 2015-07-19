@@ -54,8 +54,8 @@ layers {
 layers{
   name:"silence1"
   type: SILENCE
-  ##bottom: "label2"
-  ##bottom: "label3"
+  bottom: "label2"
+  bottom: "label3"
   bottom: "label4"
   bottom: "label5"
   bottom: "label6"
