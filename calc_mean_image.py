@@ -6,6 +6,7 @@ from sklearn.cross_validation import train_test_split
 import caffe
 import sys
 import os
+import trainsplit
 import h5py
 import shutil
 import csv
@@ -28,7 +29,7 @@ def main():
 
     label2num = {'lake':1, 'plants':2, 'window':3, 'buildings':4, 'grass':5, 'animal':6, 'water':7, 'person':8, 'clouds':9, 'sky':10, 'NA':0}
 
-    dataset = importCSV(file_labels, delimiterChar=' ')
+    dataset = trainsplit.importCSV(file_labels, delimiterChar=' ')
 
     data_all   = [x[0] for x in dataset]
     labels_all = [x[1:] for x in dataset]
