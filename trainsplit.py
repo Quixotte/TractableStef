@@ -118,6 +118,8 @@ def main():
 
     n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295, nice for pre-allocation of memory though
 
+    correct_shape = (3, 256, 256)
+
     N_train = int(n_correct_images*0.9)
     print 'Number of training images:'
     print N_train
