@@ -51,29 +51,6 @@ layers {
     slice_point: 10
   }
 }
-name: "BinaryStefNet"
-layers {
-  name: "data"
-  type: HDF5_DATA
-  top: "data"
-  top: "label"
-  hdf5_data_param {
-    source: "hd5_images_stef/stef_train.txt"
-    batch_size: 16
-  }
-  include: { phase: TRAIN }
-}
-layers {
-  name: "data"
-  type: HDF5_DATA
-  top: "data"
-  top: "label"
-  hdf5_data_param {
-    source: "hd5_images_stef/stef_test.txt"
-    batch_size: 16
-  }
-  include: { phase: TEST }
-}
 layers {
   name: "label_slicer"
   type: SLICE
