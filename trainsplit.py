@@ -12,7 +12,7 @@ import csv
 import math
 import numpy
 from scipy import misc
-
+import calc_mean_image
 
 def importCSV( csvfilePath, delimiterChar=",", ignoreFirstRow=False):
     """
@@ -50,10 +50,10 @@ def learn_and_test(solver_file):
     accuracy /= test_iters
     return accuracy
 
-def load_one_image(filename, do_print = False):
+def load_one_image(filename, image_mean, do_print = False):
     #Have to be transposed for the 3 x 256 x 256 instead of 256x256x3 (which it was originally)
     #scale from 0-256 to 0-1, since the hdf5 layer can't do this
-    img = misc.imread(filename).astype(numpy.float32).T * 0.00390625
+    img = (caffe.io.load_image(filename).astype(numpy.float32) - image_mean).T * 0.00390625
     if do_print:
         print type(data)
         print type(img)
@@ -136,10 +136,12 @@ def main():
     test_images = numpy.zeros((n_correct_images - N_train, correct_shape[0], correct_shape[1], correct_shape[2]), dtype=numpy.float32)
     test_labels = numpy.zeros((n_correct_images - N_train, labels_train.shape[1]), dtype=numpy.float32)
 
+    mean_image = calc_mean_image.get_image_mean()
+
     index = 0
     for (i, d) in enumerate(data_train):
         try:
-            img = load_one_image(os.path.join(image_dir, d))
+            img = load_one_image(os.path.join(image_dir, d), mean_image)
             if img.shape == correct_shape:
                 if index < N_train:
                     train_images[index] = img

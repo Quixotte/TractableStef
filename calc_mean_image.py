@@ -25,9 +25,7 @@ def load_one_image(filename, do_print = False):
         print img.shape, img.dtype
     return img
 
-def main():
-
-
+def construct_image_mean():
     file_labels = os.path.join(base, 'labels.txt')
 
     dataset = trainsplit.importCSV(file_labels, delimiterChar=' ')
@@ -69,9 +67,12 @@ def main():
     numpy_file_name = os.path.join(base, "mean_image.npy")
     numpy.save(numpy_file_name, mean_image)
 
-
+def get_image_mean():
+    if not os.path.exists(numpy_file_name):
+        construct_image_mean()
+    return numpy.load(numpy_file_name)
 
 if __name__ == "__main__":
-    main()
+    construct_image_mean()
     loaded_img = numpy.load(numpy_file_name)
     print loaded_img
