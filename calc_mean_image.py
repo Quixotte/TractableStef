@@ -25,6 +25,8 @@ def load_one_image(filename, do_print = False):
 def main():
     base = '/data/ad6813/Nus-wide/TractableStef'
 
+    file_labels = os.path.join(base, 'labels.txt')
+
     dataset = trainsplit.importCSV(file_labels, delimiterChar=' ')
 
     data_all   = [x[0] for x in dataset]
