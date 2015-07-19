@@ -22,16 +22,15 @@ def learn_and_test(solver_file):
 
     caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
-    solver.step(301)
+    solver.step(10000)
 
-    labels = solver.net.blobs['label2'].data
-    print labels
-    labels = solver.net.blobs['label3'].data
-    print labels
-    labels = solver.net.blobs['label4'].data
-    print labels
-    labels = solver.net.blobs['label5'].data
-    print labels
+    print "For label 8:"
+
+    print "Accuracy: "
+    print solver.net.blobs['accuracy']
+
+    print "Loss: "
+    print solver.net.blobs["loss"]
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
     #for i in range(test_iters):
