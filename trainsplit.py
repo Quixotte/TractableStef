@@ -143,6 +143,9 @@ def main():
                 test_images[index - N_train] = img
                 test_labels[index - N_train] = labels_train[i, :]
             index += 1
+
+        if i > 8000:
+            break #gettin out of memory errors, gotta use less images i guess
         except IOError:
             print "Couldn't find file", d
 
@@ -155,10 +158,15 @@ def main():
     print 'Shape of images:'
     print train_images.shape
 
-    print 'Shape of labels:'
+    print 'Shape of train labels:'
     print train_labels.shape
 
     print train_labels
+
+    print 'Shape of test labels:'
+    print test_labels.shape
+
+    print test_labels
 
     do_write = True
     chunk_size = 64
