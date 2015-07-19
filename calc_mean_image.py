@@ -14,6 +14,9 @@ import math
 import numpy
 from scipy import misc
 
+base = '/data/ad6813/Nus-wide/TractableStef'
+numpy_file_name = os.path.join(base, "mean_image.npy")
+
 def load_one_image(filename, do_print = False):
     img = misc.imread(filename).astype(numpy.float32)
     if do_print:
@@ -23,7 +26,7 @@ def load_one_image(filename, do_print = False):
     return img
 
 def main():
-    base = '/data/ad6813/Nus-wide/TractableStef'
+
 
     file_labels = os.path.join(base, 'labels.txt')
 
@@ -70,5 +73,9 @@ def main():
 
     if mean_image == loaded_img:
         print "they're the same"
+
+
 if __name__ == "__main__":
-    main()
+    loaded_img = numpy.load(numpy_file_name)
+    print loaded_img
+    #main()
