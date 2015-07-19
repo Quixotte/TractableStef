@@ -24,7 +24,13 @@ def learn_and_test(solver_file):
     solver = caffe.get_solver(solver_file)
     solver.step(1)
 
-    labels = solver.net.blobs['label1'].data
+    labels = solver.net.blobs['label2'].data
+    print labels
+    labels = solver.net.blobs['label3'].data
+    print labels
+    labels = solver.net.blobs['label4'].data
+    print labels
+    labels = solver.net.blobs['label5'].data
     print labels
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
