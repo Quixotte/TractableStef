@@ -116,7 +116,7 @@ def main():
     #load images
     #train_images = [load_one_image(os.path.join(image_dir, d)) for d in data_train if os.path.exists(image_dir + d)]
 
-    n_correct_images = 8295         #found in earlier run, don't want to recalc every time: 8295, nice for pre-allocation of memory though
+    n_correct_images = 9532         #found in earlier run, don't want to recalc every time: 8295, nice for pre-allocation of memory though
 
     correct_shape = (3, 256, 256)
 
@@ -136,14 +136,12 @@ def main():
     for (i, d) in enumerate(data_train):
         try:
             img = load_one_image(os.path.join(image_dir, d), mean_image)
-            #if index < N_train:
-             #   print 't'
-                #train_images[index] = img
-                #train_labels[index] = labels_train[i, :]
-            #else:
-              #  print 't'
-                #test_images[index - N_train] = img
-                #test_labels[index - N_train] = labels_train[i, :]
+            if index < N_train:
+                train_images[index] = img
+                train_labels[index] = labels_train[i, :]
+            else:
+                test_images[index - N_train] = img
+                test_labels[index - N_train] = labels_train[i, :]
             index += 1
         except IOError:
             print "Couldn't find file", d
