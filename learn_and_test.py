@@ -22,15 +22,8 @@ def learn_and_test(solver_file):
 
     caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
-    solver.step(10000)
+    solver.step(5000)
 
-    print "For label 8:"
-
-    print "Accuracy: "
-    print solver.net.blobs['accuracy']
-
-    print "Loss: "
-    print solver.net.blobs["loss"]
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
     #for i in range(test_iters):
@@ -40,4 +33,4 @@ def learn_and_test(solver_file):
     #return accuracy
 
 if __name__ == "__main__":
-    learn_and_test('binary_stef_solver.prototxt')
+    learn_and_test('stef_solver.prototxt')
