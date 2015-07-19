@@ -14,7 +14,7 @@ import numpy
 
 def learn_and_test(solver_file):
 
-    net = caffe.Net(solver_file, 'weights.caffemodel')
+    net = caffe.Net(solver_file)
     net.forward() # this will load the next mini-batch as defined in the net
     label1 = net.blobs['label1'].data # or whatever you want
 
