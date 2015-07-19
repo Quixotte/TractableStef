@@ -1,57 +1,69 @@
-name: "CaffeNet"
-layer {
+name: "BinaryStefNet"
+layers {
   name: "data"
-  type: "Data"
+  type: HDF5_DATA
   top: "data"
   top: "label"
-  include {
-    phase: TRAIN
+  hdf5_data_param {
+    source: "hd5_images_stef/stef_train.txt"
+    batch_size: 16
   }
-  transform_param {
-    mirror: true
-    crop_size: 227
-    mean_file: "data/ilsvrc12/imagenet_mean.binaryproto"
+  include: { phase: TRAIN }
+}
+layers {
+  name: "data"
+  type: HDF5_DATA
+  top: "data"
+  top: "label"
+  hdf5_data_param {
+    source: "hd5_images_stef/stef_test.txt"
+    batch_size: 16
   }
-# mean pixel / channel-wise mean instead of mean image
-#  transform_param {
-#    crop_size: 227
-#    mean_value: 104
-#    mean_value: 117
-#    mean_value: 123
-#    mirror: true
-#  }
-  data_param {
-    source: "examples/imagenet/ilsvrc12_train_lmdb"
-    batch_size: 256
-    backend: LMDB
+  include: { phase: TEST }
+}
+layers {
+  name: "label_slicer"
+  type: SLICE
+  ##slice
+  bottom: "label"
+  top: "label1"
+  top: "label2"
+  top: "label3"
+  top: "label4"
+  top: "label5"
+  top: "label6"
+  top: "label7"
+  top: "label8"
+  top: "label9"
+  top: "label10"
+  top: "label11"
+  slice_param {
+    slice_dim: 1
+    slice_point: 1
+    slice_point: 2
+    slice_point: 3
+    slice_point: 4
+    slice_point: 5
+    slice_point: 6
+    slice_point: 7
+    slice_point: 8
+    slice_point: 9
+    slice_point: 10
   }
 }
-layer {
-  name: "data"
-  type: "Data"
-  top: "data"
-  top: "label"
-  include {
-    phase: TEST
-  }
-  transform_param {
-    mirror: false
-    crop_size: 227
-    mean_file: "data/ilsvrc12/imagenet_mean.binaryproto"
-  }
-# mean pixel / channel-wise mean instead of mean image
-#  transform_param {
-#    crop_size: 227
-#    mean_value: 104
-#    mean_value: 117
-#    mean_value: 123
-#    mirror: true
-#  }
-  data_param {
-    source: "examples/imagenet/ilsvrc12_val_lmdb"
-    batch_size: 50
-    backend: LMDB
-  }
+layers{
+  name:"silence1"
+  type: SILENCE
+  ##bottom: "label2"
+  ##bottom: "label3"
+  bottom: "label4"
+  bottom: "label5"
+  bottom: "label6"
+  bottom: "label7"
+  ##bottom: "label8"
+  bottom: "label9"
+  bottom: "label10"
+  bottom: "label11"
 }
 layer {
   name: "conv1"
@@ -385,7 +397,7 @@ layer {
   name: "accuracy"
   type: "Accuracy"
   bottom: "fc8"
-  bottom: "label"
+  bottom: "label8"
   top: "accuracy"
   include {
     phase: TEST
@@ -395,6 +407,6 @@ layer {
   name: "loss"
   type: "SoftmaxWithLoss"
   bottom: "fc8"
-  bottom: "label"
+  bottom: "label8"
   top: "loss"
 }
