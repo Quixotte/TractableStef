@@ -28,10 +28,10 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
     print net_file
     print caffe_model
-    net = caffe.Net(net_file, caffe_model, 1)
+    net = caffe.Net(net_file, caffe_model, caffe.Phase.TEST)
 
     caffe.set_mode_gpu()
-    caffe.set_phase_test()
+    #caffe.set_phase_test()
 
     n_test_files = 954  #run trainsplit to find out this number again
 
