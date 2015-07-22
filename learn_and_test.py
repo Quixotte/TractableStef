@@ -39,15 +39,15 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
     neg_acc = []
 
     for i in numpy.arange(n_test_files):
-        res = net.forward()
+        net.forward()
 
         accuracy = net.blobs['accuracy'].data
-        label = net.blobs['label' + str(label_num)]
+        label = net.blobs['label' + str(label_num)].data
 
         if numpy.sum(label) == 1:
-            pos_acc.append(numpy.sum(label)) #change label to 1 dimension from 1x1x1x1
+            pos_acc.append(numpy.sum(accuracy)) #change label to 1 dimension from 1x1x1x1
         else:
-            neg_acc.append(numpy.sum(label))
+            neg_acc.append(numpy.sum(accuracy))
 
     print pos_acc
     print neg_acc
