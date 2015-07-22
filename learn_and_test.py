@@ -12,28 +12,6 @@ import csv
 
 import numpy
 
-def get_advanced_accuracy(solver_file, caffe_model, label_num):
-    net = caffe.Net(solver_file, caffe_model)
-
-    caffe.set_mode_gpu()
-    caffe.set_phase_test()
-
-
-    res = net.forward()
-
-    accuracy = net.blobs['accuracy'].data
-    label = net.blobs['label' + str(label_num)]
-
-    pos_acc = []
-    neg_acc = []
-
-    if numpy.sum(label) == 1:
-        pos_acc.append(numpy.sum(label))
-    else:
-        neg_acc.append(numpy.sum(label))
-
-
-
 def learn_and_test(solver_file, label_num):
 
     #net = caffe.Net(solver_file)
@@ -54,11 +32,55 @@ def learn_and_test(solver_file, label_num):
     #accuracy /= test_iters
     #return accuracy
 
-if __name__ == "__main__":
+def get_advanced_accuracy(solver_file, caffe_model, label_num):
+    net = caffe.Net(solver_file, caffe_model)
+
+    caffe.set_mode_gpu()
+    caffe.set_phase_test()
+
+    n_test_files = 954 #run trainsplit to find out this number again
+
+    pos_acc = []
+    neg_acc = []
+
+    for i in numpy.arange(n_test_files):
+        res = net.forward()
+
+        accuracy = net.blobs['accuracy'].data
+        label = net.blobs['label' + str(label_num)]
+
+        if numpy.sum(label) == 1:
+            pos_acc.append(numpy.sum(label))
+        else:
+            neg_acc.append(numpy.sum(label))
+
+    pos_acc = numpy.mean(numpy.asarray(pos_acc))
+    neg_acc = numpy.mean(numpy.asarray(neg_acc))
+    results_dir = 'results/'
+    results_file = 'label_' + str(label_num) + '_results'
+    results = os.path.join(results_dir, results_file)
+    with open(results, 'w') as f:
+        f.write("Positive accuracy rate: " + str(pos_acc))
+        f.write("Negative accuracy rate: " + str(neg_acc))
+
+
+if __name__ == "__main__2":
     base = 'binary_solvers/binary_stef_solver_'
     for i in numpy.arange(1,12):
         file_name = base + str(i) + '.prototxt'
         learn_and_test(file_name, i)
+
+if __name__ == "__main__":
+
+    ##In order for this to work the batch size of the test has to be 1.
+
+    solver_base = 'binary_solvers/binary_stef_solver_'
+    model_base = '../../../../tmp/stef_net/snapshot_file_binary_'
+    for i in numpy.arange(1,2):
+        solver_file = solver_base + str(i) + '.prototxt'
+        snapshot_file = model_base + str(i) + '.caffemodel'
+        get_advanced_accuracy(file_name, snapshot_file, i)
+
 
 
     #learn_and_test('binary_solvers/binary_stef_solver_1.prototxt', 1)
