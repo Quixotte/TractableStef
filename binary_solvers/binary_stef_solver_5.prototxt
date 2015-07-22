@@ -1,4 +1,4 @@
-net: "binary_stef_net_5.prototxt"
+net: "binary_solvers/binary_stef_net_5.prototxt"
 test_iter: 100
 test_interval: 100
 base_lr: 0.01
@@ -9,6 +9,6 @@ display: 100
 max_iter: 45000
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 44999
+snapshot: 1000
 snapshot_prefix: "../../../../../tmp/stef_net/snapshot_file_binary_5"
 solver_mode: GPU
