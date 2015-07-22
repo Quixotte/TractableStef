@@ -35,6 +35,6 @@ def learn_and_test(solver_file):
 if __name__ == "__main__":
     base = 'binary_solvers/binary_stef_solver_'
     for i in numpy.arange(1,12):
-        file_name = os.path.join(base, str(i), '.prototxt')
+        file_name = base + str(i) + '.prototxt'
         print file_name
     #learn_and_test('stef_solver.prototxt')
