@@ -22,7 +22,7 @@ def learn_and_test(solver_file):
 
     caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
-    solver.step(5000)
+    solver.solve()
 
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
@@ -33,4 +33,6 @@ def learn_and_test(solver_file):
     #return accuracy
 
 if __name__ == "__main__":
-    learn_and_test('stef_solver.prototxt')
+    for i in numpy.arange(1,11):
+        print i
+    #learn_and_test('stef_solver.prototxt')
