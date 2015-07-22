@@ -79,7 +79,7 @@ if __name__ == "__main__":
     for i in numpy.arange(1,2):
         solver_file = solver_base + str(i) + '.prototxt'
         snapshot_file = model_base + str(i) + '.caffemodel'
-        get_advanced_accuracy(file_name, snapshot_file, i)
+        get_advanced_accuracy(solver_file, snapshot_file, i)
 
 
 
