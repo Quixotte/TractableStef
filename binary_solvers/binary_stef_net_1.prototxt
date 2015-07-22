@@ -54,6 +54,7 @@ layers {
 layers{
   name:"silence1"
   type: SILENCE
+  ##bottom: "label1"
   bottom: "label2"
   bottom: "label3"
   bottom: "label4"
@@ -330,17 +331,14 @@ layers {
   }
 }
 layers {
-  name: "prob"
-  type: SOFTMAX
+  name: "accuracy"
+  type: ACCURACY
   bottom: "fc8"
-  top: "prob"
-}
-layers {
-  name: "stats"
-  type: TESTSTATISTIC
-  bottom: "prob"
   bottom: "label1"
-  top: "stats"
+  top: "accuracy"
+  include {
+    phase: TEST
+  }
 }
 layers {
   name: "loss"
