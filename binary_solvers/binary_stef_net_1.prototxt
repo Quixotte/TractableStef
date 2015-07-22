@@ -60,7 +60,7 @@ layers{
   bottom: "label5"
   bottom: "label6"
   bottom: "label7"
-  ##bottom: "label8"
+  bottom: "label8"
   bottom: "label9"
   bottom: "label10"
   bottom: "label11"
@@ -330,19 +330,22 @@ layers {
   }
 }
 layers {
-  name: "accuracy"
-  type: ACCURACY
+  name: "prob"
+  type: SOFTMAX
   bottom: "fc8"
-  bottom: "label8"
-  top: "accuracy"
-  include {
-    phase: TEST
-  }
+  top: "prob"
+}
+layers {
+  name: "stats"
+  type: TESTSTATISTIC
+  bottom: "prob"
+  bottom: "label1"
+  top: "stats"
 }
 layers {
   name: "loss"
   type: SOFTMAX_LOSS
   bottom: "fc8"
-  bottom: "label8"
+  bottom: "label1"
   top: "loss"
 }

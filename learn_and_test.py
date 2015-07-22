@@ -12,17 +12,21 @@ import csv
 
 import numpy
 
-def learn_and_test(solver_file):
+def learn_and_test(solver_file, label_num):
 
     #net = caffe.Net(solver_file)
     #net.forward() # this will load the next mini-batch as defined in the net
     #label1 = net.blobs['label1'].data # or whatever you want
 
-    #print label1
+    print '========'
+    print 'currently solving for label number: ' + str(label_num)
 
-    caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
-    solver.solve()
+    #solver.solve()
+
+    solver.step(1)
+    print solver.net.blobs['stats'].data
+
 
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
@@ -33,8 +37,10 @@ def learn_and_test(solver_file):
     #return accuracy
 
 if __name__ == "__main__":
-    base = 'binary_solvers/binary_stef_solver_'
-    for i in numpy.arange(1,12):
-        file_name = base + str(i) + '.prototxt'
-        print file_name
-    #learn_and_test('stef_solver.prototxt')
+    #base = 'binary_solvers/binary_stef_solver_'
+    #for i in numpy.arange(1,12):
+    #    file_name = base + str(i) + '.prototxt'
+    #    learn_and_test(file_name, i)
+
+
+    learn_and_test('binary_solvers/binary_stef_solver_1.prototxt', 1)
