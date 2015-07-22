@@ -28,7 +28,7 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
     print net_file
     print caffe_model
-    net = caffe.Net(net_file, caffe_model, caffe.Phase.TEST)
+    net = caffe.Net(net_file, caffe_model, net.Phase.TEST)
 
     caffe.set_mode_gpu()
     #caffe.set_phase_test()
