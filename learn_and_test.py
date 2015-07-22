@@ -12,7 +12,7 @@ import csv
 
 import numpy
 
-def learn_and_test(solver_file, label_num):
+def learn(solver_file, label_num):
 
     #net = caffe.Net(solver_file)
     #net.forward() # this will load the next mini-batch as defined in the net
@@ -22,15 +22,7 @@ def learn_and_test(solver_file, label_num):
     print 'currently solving for label number: ' + str(label_num)
     caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
-    solver.step(10001)
-
-    #accuracy = 0
-    #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
-    #for i in range(test_iters):
-    #    solver.test_nets[0].forward()
-    #    accuracy += solver.test_nets[0].blobs['accuracy'].data
-    #accuracy /= test_iters
-    #return accuracy
+    solver.step(101)
 
 def get_advanced_accuracy(net_file, caffe_model, label_num):
 
@@ -67,13 +59,13 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
         f.write("Negative accuracy rate: " + str(neg_acc))
 
 
-if __name__ == "__main__2":
-    base = 'binary_solvers/binary_stef_solver_'
-    for i in numpy.arange(1,12):
-        file_name = base + str(i) + '.prototxt'
-        learn_and_test(file_name, i)
-
 if __name__ == "__main__":
+    base = 'binary_solvers/binary_stef_solver_'
+    for i in numpy.arange(1,2):
+        file_name = base + str(i) + '.prototxt'
+        learn(file_name, i)
+
+if __name__ == "__main__2":
 
     ##In order for this to work the batch size of the test has to be 1.
 
