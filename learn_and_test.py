@@ -43,14 +43,14 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
         accuracy = net.blobs['accuracy'].data
         label = net.blobs['label' + str(label_num)].data
-
+        print "accuracy: " + str(accuracy) + " with label: " + str(label)
         if numpy.sum(label) == 1:
             pos_acc.append(numpy.sum(accuracy)) #change label to 1 dimension from 1x1x1x1
         else:
             neg_acc.append(numpy.sum(accuracy))
 
-    print pos_acc
-    print neg_acc
+    #print pos_acc
+    #print neg_acc
 
     pos_acc = numpy.mean(numpy.asarray(pos_acc))
     neg_acc = numpy.mean(numpy.asarray(neg_acc))
