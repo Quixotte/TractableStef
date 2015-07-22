@@ -64,7 +64,7 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
 if __name__ == "__main__":
     base = 'binary_solvers/binary_stef_solver_'
-    for i in numpy.arange(1,2):
+    for i in numpy.arange(1, 12):
         file_name = base + str(i) + '.prototxt'
         learn(file_name, i)
 
