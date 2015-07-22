@@ -20,7 +20,7 @@ def learn_and_test(solver_file, label_num):
 
     print '========'
     print 'currently solving for label number: ' + str(label_num)
-
+    caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
     solver.solve()
 
