@@ -10,5 +10,5 @@ max_iter: 45000
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 10000
-snapshot_prefix: "../../../../../tmp/stef_net/snapshot_file_binary_3"
+snapshot_prefix: "nets/snapshot_file_binary_3"
 solver_mode: GPU
