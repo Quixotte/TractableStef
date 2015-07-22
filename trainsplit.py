@@ -166,7 +166,7 @@ def main():
 
     print test_labels
 
-    do_write = True
+    do_write = False
     chunk_size = 64
     if do_write:
         #Write away training data
