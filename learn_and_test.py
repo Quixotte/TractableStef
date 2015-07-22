@@ -22,7 +22,7 @@ def learn_and_test(solver_file, label_num):
     print 'currently solving for label number: ' + str(label_num)
     caffe.set_mode_gpu()
     solver = caffe.get_solver(solver_file)
-    solver.solve()
+    solver.step(1)
 
     #accuracy = 0
     #test_iters = int(len(Xt) / solver.test_nets[0].blobs['data'].num)
@@ -34,9 +34,9 @@ def learn_and_test(solver_file, label_num):
 
 if __name__ == "__main__":
     base = 'binary_solvers/binary_stef_solver_'
-    #for i in numpy.arange(1,12):
-    file_name = base + "1" + '.prototxt'
-    learn_and_test(file_name, 1)
+    for i in numpy.arange(1,12):
+        file_name = base + str(i) + '.prototxt'
+        learn_and_test(file_name, i)
 
 
     #learn_and_test('binary_solvers/binary_stef_solver_1.prototxt', 1)
