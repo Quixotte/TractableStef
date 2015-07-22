@@ -33,12 +33,15 @@ def learn_and_test(solver_file, label_num):
     #return accuracy
 
 def get_advanced_accuracy(solver_file, caffe_model, label_num):
+
+    print solver_file
+    print caffe_model
     net = caffe.Net(solver_file, caffe_model)
 
     caffe.set_mode_gpu()
     caffe.set_phase_test()
 
-    n_test_files = 954 #run trainsplit to find out this number again
+    n_test_files = 954  #run trainsplit to find out this number again
 
     pos_acc = []
     neg_acc = []
