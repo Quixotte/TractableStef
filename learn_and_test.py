@@ -73,7 +73,7 @@ if __name__ == "__main__":
     model_base = '../../../../tmp/stef_net/snapshot_file_binary_'
     for i in numpy.arange(1,2):
         net_file = net_base + str(i) + '.prototxt'
-        snapshot_file = model_base + str(i) + '.caffemodel'
+        snapshot_file = model_base + str(i) + '_iter_100.caffemodel'
         get_advanced_accuracy(net_file, snapshot_file, i)
 
 
