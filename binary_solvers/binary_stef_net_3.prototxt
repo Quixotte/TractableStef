@@ -17,7 +17,7 @@ layers {
   top: "label"
   hdf5_data_param {
     source: "hd5_images_stef/stef_test.txt"
-    batch_size: 16
+    batch_size: 1
   }
   include: { phase: TEST }
 }
