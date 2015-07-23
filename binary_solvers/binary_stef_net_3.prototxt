@@ -17,7 +17,7 @@ layers {
   top: "label"
   hdf5_data_param {
     source: "hd5_images_stef/stef_test.txt"
-    batch_size: 1
+    batch_size: 16
   }
   include: { phase: TEST }
 }
@@ -54,6 +54,7 @@ layers {
 layers{
   name:"silence1"
   type: SILENCE
+  bottom: "label1"
   bottom: "label2"
   ##bottom: "label3"
   bottom: "label4"
