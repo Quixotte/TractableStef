@@ -62,13 +62,13 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
         f.write("Negative accuracy rate: " + str(neg_acc))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__1":
     base = 'binary_solvers/binary_stef_solver_'
     for i in numpy.arange(1, 12):
         file_name = base + str(i) + '.prototxt'
         learn(file_name, i)
 
-if __name__ == "__main__1":
+if __name__ == "__main__":
 
     ##In order for this to work the batch size of the test has to be 1.
 
