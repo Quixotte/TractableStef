@@ -43,7 +43,7 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
         accuracy = net.blobs['accuracy'].data
         label = net.blobs['label' + str(label_num)].data
-        print "accuracy: " + str(accuracy) + " with label: " + str(label)
+        #print "accuracy: " + str(accuracy) + " with label: " + str(label)
         if numpy.sum(label) == 1.:
             pos_acc.append(numpy.sum(accuracy)) #change label to 1 dimension from 1x1
         else:
@@ -62,19 +62,19 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
         f.write("Negative accuracy rate: " + str(neg_acc))
 
 
-if __name__ == "__main__1":
+if __name__ == "__main__":
     base = 'binary_solvers/binary_stef_solver_'
     for i in numpy.arange(1, 12):
         file_name = base + str(i) + '.prototxt'
         learn(file_name, i)
 
-if __name__ == "__main__":
+if __name__ == "__main__1":
 
     ##In order for this to work the batch size of the test has to be 1.
 
     net_base = 'binary_solvers/binary_stef_net_'
     model_base = 'nets/snapshot_file_binary_'
-    for i in numpy.arange(1,6):
+    for i in numpy.arange(1,12):
         net_file = net_base + str(i) + '.prototxt'
         snapshot_file = model_base + str(i) + '_iter_10000.caffemodel'
         get_advanced_accuracy(net_file, snapshot_file, i)
