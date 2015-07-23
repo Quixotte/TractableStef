@@ -73,7 +73,7 @@ if __name__ == "__main__":
     ##In order for this to work the batch size of the test has to be 1.
 
     net_base = 'binary_solvers/binary_stef_net_'
-    model_base = 'stef_net/snapshot_file_binary_'
+    model_base = 'nets/snapshot_file_binary_'
     for i in numpy.arange(1,6):
         net_file = net_base + str(i) + '.prototxt'
         snapshot_file = model_base + str(i) + '_iter_10000.caffemodel'
