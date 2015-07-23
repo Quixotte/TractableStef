@@ -58,7 +58,7 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
     results_file = 'label_' + str(label_num) + '_results'
     results = os.path.join(results_dir, results_file)
     with open(results, 'w') as f:
-        f.write("Positive accuracy rate: " + str(pos_acc))
+        f.write("Positive accuracy rate: " + str(pos_acc) + "\n")
         f.write("Negative accuracy rate: " + str(neg_acc))
 
 
@@ -73,10 +73,10 @@ if __name__ == "__main__1":
     ##In order for this to work the batch size of the test has to be 1.
 
     net_base = 'binary_solvers/binary_stef_net_'
-    model_base = '../../../../tmp/stef_net/snapshot_file_binary_'
-    for i in numpy.arange(1,2):
+    model_base = 'stef_net/snapshot_file_binary_'
+    for i in numpy.arange(1,6):
         net_file = net_base + str(i) + '.prototxt'
-        snapshot_file = model_base + str(i) + '_iter_100.caffemodel'
+        snapshot_file = model_base + str(i) + '_iter_10000.caffemodel'
         get_advanced_accuracy(net_file, snapshot_file, i)
 
 
