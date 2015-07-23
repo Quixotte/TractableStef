@@ -24,11 +24,51 @@ def learn(solver_file, label_num):
     solver = caffe.get_solver(solver_file)
     solver.step(10001)
 
+results_dir = 'results/'
+
+def get_advanced_accuracy_MTL(net_file, caffe_model):
+    print net_file
+    print caffe_model
+
+    net = caffe.Net(net_file, caffe_model, 1) #the 1 stands for testing only
+
+    caffe.set_mode_gpu()
+
+    pos_acc = [[]]
+    neg_acc = [[]]
+
+    n_test_files = 954
+
+    for i in numpy.arange(n_test_files):
+        net.forward()
+        for label in numpy.arange(1,12):
+            label_acc = net.blobs['accuracy' + str(label)].data
+            label_value = net.blobs['label' + str(label)].data
+
+            if numpy.sum(label) == 1.:
+                pos_acc[label - 1, :].append(numpy.sum(label_acc))
+            else:
+                neg_acc[label - 1, :].append(numpy.sum(label_acc))
+
+    pos_acc = numpy.mean(numpy.asarray(pos_acc), axis=1)
+    neg_acc = numpy.mean(numpy.asarray(neg_acc), axis=1)
+
+    results_file = 'MTL_results'
+    results = os.path.join(results_dir, results_file)
+
+    with open(results, 'w') as f:
+        for i in numpy.arange(1,12):
+            f.write("Label " + str(i) + "\n")
+            f.write("Positive accuracy rate: " + str(pos_acc[i-1]) + "\n")
+            f.write("Negative accuracy rate: " + str(neg_acc[i-1]) + "\n\n")
+
+
+
 def get_advanced_accuracy(net_file, caffe_model, label_num):
 
     print net_file
     print caffe_model
-    net = caffe.Net(net_file, caffe_model, 1) #the 1 stands for testing
+    net = caffe.Net(net_file, caffe_model, 1) #the 1 stands for testing only
 
     caffe.set_mode_gpu()
     #caffe.set_phase_test()
@@ -54,21 +94,26 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
     pos_acc = numpy.mean(numpy.asarray(pos_acc))
     neg_acc = numpy.mean(numpy.asarray(neg_acc))
-    results_dir = 'results/'
+
     results_file = 'label_' + str(label_num) + '_results'
     results = os.path.join(results_dir, results_file)
+
     with open(results, 'w') as f:
         f.write("Positive accuracy rate: " + str(pos_acc) + "\n")
         f.write("Negative accuracy rate: " + str(neg_acc))
 
 
 if __name__ == "__main__":
-    #base = 'binary_solvers/binary_stef_solver_'
-    #for i in numpy.arange(1, 12):
-    #    file_name = base + str(i) + '.prototxt'
-    #    learn(file_name, i)
+
     learn("stef_solver.prototxt", 42)
-    
+
+    base = 'binary_solvers/binary_stef_solver_'
+    for i in numpy.arange(1, 12):
+        file_name = base + str(i) + '.prototxt'
+        learn(file_name, i)
+
+    #get_advanced_accuracy_MTL("stef_net.prototxt", "nets/nets/snapshot_MTL_iter_10000.caffemodel")
+
 if __name__ == "__main__1":
 
     ##In order for this to work the batch size of the test has to be 1.
