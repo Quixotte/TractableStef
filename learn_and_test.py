@@ -28,8 +28,9 @@ def learn(solver_file, label_num):
     while accuracy == 0 and i < 10:        #hacky solution to prevent 0 acc, not pretty :/
         solver = caffe.get_solver(solver_file)
         solver.step(100)
-        for key, value in solver.net.blobs:
-            print key
+        if "accuracy" in solver.net.blobs.keys():
+            print "================"
+            print "accuracy key is there"
         accuracy = solver.net.blobs['accuracy'].data
         i+=1
         if accuracy == 0:
