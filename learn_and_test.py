@@ -22,23 +22,9 @@ def learn(solver_file, label_num):
     print 'currently solving for label number: ' + str(label_num)
     caffe.set_mode_gpu()
 
+    solver = caffe.get_solver(solver_file)
 
-    accuracy = 0
-    i = 0
-    while accuracy == 0 and i < 3:        #hacky solution to prevent 0 acc, not pretty :/
-        solver = caffe.get_solver(solver_file)
-        solver.step(200)
-        test_net = solver.test_nets[0]
-        if "accuracy" in test_net.blobs.keys():
-            print "================"
-            print "accuracy key is there"
-        accuracy = test_net.blobs['accuracy'].data
-        i+=1
-        if accuracy == 0:
-            print 'accuracy is 0 ,trying to re-initialize'
-
-    print 'accuracy not 0 anymore, continueing training'
-    #solver.step(5000)
+    solver.step(3000)
 
 
 results_dir = 'results/'
