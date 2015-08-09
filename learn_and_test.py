@@ -21,8 +21,21 @@ def learn(solver_file, label_num):
     print '========'
     print 'currently solving for label number: ' + str(label_num)
     caffe.set_mode_gpu()
-    solver = caffe.get_solver(solver_file)
-    solver.step(10001)
+
+
+    accuracy = 0
+    i = 0
+    while accuracy == 0 and i < 10:        #hacky solution to prevent 0 acc, not pretty :/
+        solver = caffe.get_solver(solver_file)
+        solver.step(100)
+        accuracy = solver.blobs['accuracy'].data
+        i+=1
+        if accuracy == 0:
+            print 'accuracy is 0 ,trying to re-initialize'
+
+    print 'accuracy not 0 anymore, continueing training'
+    #solver.step(5000)
+
 
 results_dir = 'results/'
 
@@ -104,7 +117,6 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
 
 if __name__ == "__main__":
-
     learn("stef_solver.prototxt", 42)
 
     base = 'binary_solvers/binary_stef_solver_'
