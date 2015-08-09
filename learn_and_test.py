@@ -117,7 +117,7 @@ def get_advanced_accuracy(net_file, caffe_model, label_num):
 
 
 if __name__ == "__main__":
-    learn("stef_solver.prototxt", 42)
+    #learn("stef_solver.prototxt", 42)
 
     base = 'binary_solvers/binary_stef_solver_'
     for i in numpy.arange(1, 12):
