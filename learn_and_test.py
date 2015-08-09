@@ -25,9 +25,9 @@ def learn(solver_file, label_num):
 
     accuracy = 0
     i = 0
-    while accuracy == 0 and i < 10:        #hacky solution to prevent 0 acc, not pretty :/
+    while accuracy == 0 and i < 3:        #hacky solution to prevent 0 acc, not pretty :/
         solver = caffe.get_solver(solver_file)
-        solver.step(100)
+        solver.step(200)
         test_net = solver.test_nets[0]
         if "accuracy" in test_net.blobs.keys():
             print "================"
