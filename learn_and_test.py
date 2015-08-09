@@ -44,7 +44,7 @@ def get_advanced_accuracy_MTL(net_file, caffe_model):
 
     for i in numpy.arange(n_test_files):
         net.forward()
-        for label in numpy.arange(1,12):
+        for label in numpy.arange(2,3):
             label_acc = net.blobs['accuracy' + str(label)].data
             label_value = net.blobs['label' + str(label)].data
 
